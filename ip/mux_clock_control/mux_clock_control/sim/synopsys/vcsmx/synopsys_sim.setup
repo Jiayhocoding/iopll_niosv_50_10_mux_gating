@@ -1,0 +1,7 @@
+
+WORK > DEFAULT
+DEFAULT:                          ./libraries/work/             
+work:                             ./libraries/work/             
+intelclkctrl_201:                 ./libraries/intelclkctrl_201/ 
+mux_clock_control:                ./libraries/mux_clock_control/
+OTHERS=_device_synopsys_sim.setup                               

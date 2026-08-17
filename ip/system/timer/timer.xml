@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy
+ date="2026.08.17.15:40:27"
+ outputDirectory="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/timer/">
+ <perimeter>
+  <parameter
+     name="AUTO_GENERATION_ID"
+     type="Integer"
+     defaultValue="0"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_UNIQUE_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_FAMILY"
+     type="String"
+     defaultValue="Agilex 5"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE"
+     type="String"
+     defaultValue="A5ED013BB32AE4SCS"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_SPEEDGRADE"
+     type="String"
+     defaultValue="4"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_BOARD"
+     type="String"
+     defaultValue="default"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_CLOCK_RATE"
+     type="Long"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_CLOCK_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_RESET_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_S1_CPU_INFO_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <interface name="clk" kind="clock" start="0">
+   <property name="clockRate" value="0" />
+   <property name="externallyDriven" value="false" />
+   <property name="ptfSchematicName" value="" />
+   <port name="clk" direction="input" role="clk" width="1" />
+  </interface>
+  <interface name="reset" kind="reset" start="0">
+   <property name="associatedClock" value="clk" />
+   <property name="synchronousEdges" value="DEASSERT" />
+   <port name="reset_n" direction="input" role="reset_n" width="1" />
+  </interface>
+  <interface name="s1" kind="avalon" start="0">
+   <property name="addressAlignment" value="NATIVE" />
+   <property name="addressGroup" value="0" />
+   <property name="addressSpan" value="8" />
+   <property name="addressUnits" value="WORDS" />
+   <property name="alwaysBurstMaxBurst" value="false" />
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="reset" />
+   <property name="bitsPerSymbol" value="8" />
+   <property name="bridgedAddressOffset" value="0" />
+   <property name="bridgesToMaster" value="" />
+   <property name="burstOnBurstBoundariesOnly" value="false" />
+   <property name="burstcountUnits" value="WORDS" />
+   <property name="constantBurstBehavior" value="false" />
+   <property name="explicitAddressSpan" value="0" />
+   <property name="holdTime" value="0" />
+   <property name="interleaveBursts" value="false" />
+   <property name="isBigEndian" value="false" />
+   <property name="isFlash" value="false" />
+   <property name="isMemoryDevice" value="false" />
+   <property name="isNonVolatileStorage" value="false" />
+   <property name="linewrapBursts" value="false" />
+   <property name="maximumPendingReadTransactions" value="0" />
+   <property name="maximumPendingWriteTransactions" value="0" />
+   <property name="minimumReadLatency" value="1" />
+   <property name="minimumResponseLatency" value="1" />
+   <property name="minimumUninterruptedRunLength" value="1" />
+   <property name="prSafe" value="false" />
+   <property name="printableDevice" value="false" />
+   <property name="readLatency" value="0" />
+   <property name="readWaitStates" value="1" />
+   <property name="readWaitTime" value="1" />
+   <property name="registerIncomingSignals" value="false" />
+   <property name="registerOutgoingSignals" value="false" />
+   <property name="setupTime" value="0" />
+   <property name="timingUnits" value="Cycles" />
+   <property name="transparentBridge" value="false" />
+   <property name="waitrequestAllowance" value="0" />
+   <property name="waitrequestTimeout" value="1024" />
+   <property name="wellBehavedWaitrequest" value="false" />
+   <property name="writeLatency" value="0" />
+   <property name="writeWaitStates" value="0" />
+   <property name="writeWaitTime" value="0" />
+   <property name="dfhFeatureGuid" value="0" />
+   <property name="dfhGroupId" value="0" />
+   <property name="dfhParameterId" value="" />
+   <property name="dfhParameterName" value="" />
+   <property name="dfhParameterVersion" value="" />
+   <property name="dfhParameterData" value="" />
+   <property name="dfhParameterDataLength" value="" />
+   <property name="dfhFeatureMajorVersion" value="0" />
+   <property name="dfhFeatureMinorVersion" value="0" />
+   <property name="dfhFeatureId" value="35" />
+   <property name="dfhFeatureType" value="3" />
+   <port name="address" direction="input" role="address" width="3" />
+   <port name="writedata" direction="input" role="writedata" width="16" />
+   <port name="readdata" direction="output" role="readdata" width="16" />
+   <port name="chipselect" direction="input" role="chipselect" width="1" />
+   <port name="write_n" direction="input" role="write_n" width="1" />
+  </interface>
+  <interface name="irq" kind="interrupt" start="0">
+   <property name="associatedAddressablePoint" value="timer.s1" />
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="reset" />
+   <property name="bridgedReceiverOffset" value="0" />
+   <property name="bridgesToReceiver" value="" />
+   <property name="irqScheme" value="NONE" />
+   <port name="irq" direction="output" role="irq" width="1" />
+  </interface>
+ </perimeter>
+ <entity kind="timer" version="1.0" name="timer">
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="-1" />
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter name="AUTO_DEVICE" value="A5ED013BB32AE4SCS" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Agilex 5" />
+  <parameter name="AUTO_BOARD" value="default" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="-1" />
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="-1" />
+  <parameter name="AUTO_UNIQUE_ID" value="" />
+  <parameter name="AUTO_S1_CPU_INFO_ID" value="" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="4" />
+  <generatedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/timer/synth/timer.v"
+       attributes="CONTAINS_INLINE_CONFIGURATION" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/timer/synth/timer.v"
+       attributes="CONTAINS_INLINE_CONFIGURATION" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/timer.ip" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file
+       path="/home/zhuangjiayao/altera_pro/26.1/ip/altera/eip/altera_avalon_timer/altera_avalon_timer_hw.tcl" />
+  </childSourceFiles>
+  <messages>
+   <message level="Info" culprit="timer">"Generating: timer"</message>
+   <message level="Info" culprit="timer">"Generating: timer_altera_avalon_timer_1935_2qdnrka"</message>
+   <message level="Info" culprit="timer">Starting RTL generation for module 'timer_altera_avalon_timer_1935_2qdnrka'</message>
+   <message level="Info" culprit="timer">  Generation command is [exec /home/zhuangjiayao/altera_pro/26.1/quartus/linux64//perl/bin/perl -I /home/zhuangjiayao/altera_pro/26.1/quartus/linux64//perl/lib -I /home/zhuangjiayao/altera_pro/26.1/quartus/sopc_builder/bin/europa -I /home/zhuangjiayao/altera_pro/26.1/quartus/sopc_builder/bin/perl_lib -I /home/zhuangjiayao/altera_pro/26.1/quartus/sopc_builder/bin -I /home/zhuangjiayao/altera_pro/26.1/quartus/../ip/altera/sopc_builder_ip/common -I /home/zhuangjiayao/altera_pro/26.1/quartus/../ip/altera/eip/altera_avalon_timer -- /home/zhuangjiayao/altera_pro/26.1/quartus/../ip/altera/eip/altera_avalon_timer/generate_rtl.pl --name=timer_altera_avalon_timer_1935_2qdnrka --dir=/tmp/alt0682_10566713783054980901.dir/0001_timer_gen/ --quartus_dir=/home/zhuangjiayao/altera_pro/26.1/quartus --verilog --config=/tmp/alt0682_10566713783054980901.dir/0001_timer_gen//timer_altera_avalon_timer_1935_2qdnrka_component_configuration.pl  --do_build_sim=0  ]</message>
+   <message level="Info" culprit="timer">Done RTL generation for module 'timer_altera_avalon_timer_1935_2qdnrka'</message>
+  </messages>
+ </entity>
+ <entity
+   kind="altera_avalon_timer"
+   version="19.3.5"
+   name="timer_altera_avalon_timer_1935_2qdnrka">
+  <parameter name="loadValue" value="49999" />
+  <parameter name="timeoutPulseOutput" value="false" />
+  <parameter name="period" value="1" />
+  <parameter name="periodUnitsString" value="ms" />
+  <parameter name="mult" value="0.001" />
+  <parameter name="ticksPerSec" value="1000.0" />
+  <parameter name="systemFrequency" value="50000000" />
+  <parameter name="alwaysRun" value="false" />
+  <parameter name="valueInSecond" value="0.001" />
+  <parameter name="fixedPeriod" value="false" />
+  <parameter name="counterSize" value="32" />
+  <parameter name="periodUnits" value="MSEC" />
+  <parameter name="watchdogPulse" value="2" />
+  <parameter name="slave_address_width" value="3" />
+  <parameter name="resetOutput" value="false" />
+  <parameter name="snapshot" value="true" />
+  <parameter name="timerPreset" value="FULL_FEATURED" />
+  <generatedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/timer/altera_avalon_timer_1935/synth/timer_altera_avalon_timer_1935_2qdnrka.v"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/timer/altera_avalon_timer_1935/synth/timer_altera_avalon_timer_1935_2qdnrka.v"
+       attributes="" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/home/zhuangjiayao/altera_pro/26.1/ip/altera/eip/altera_avalon_timer/altera_avalon_timer_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="timer" as="timer" />
+  <messages>
+   <message level="Info" culprit="timer">"Generating: timer_altera_avalon_timer_1935_2qdnrka"</message>
+   <message level="Info" culprit="timer">Starting RTL generation for module 'timer_altera_avalon_timer_1935_2qdnrka'</message>
+   <message level="Info" culprit="timer">  Generation command is [exec /home/zhuangjiayao/altera_pro/26.1/quartus/linux64//perl/bin/perl -I /home/zhuangjiayao/altera_pro/26.1/quartus/linux64//perl/lib -I /home/zhuangjiayao/altera_pro/26.1/quartus/sopc_builder/bin/europa -I /home/zhuangjiayao/altera_pro/26.1/quartus/sopc_builder/bin/perl_lib -I /home/zhuangjiayao/altera_pro/26.1/quartus/sopc_builder/bin -I /home/zhuangjiayao/altera_pro/26.1/quartus/../ip/altera/sopc_builder_ip/common -I /home/zhuangjiayao/altera_pro/26.1/quartus/../ip/altera/eip/altera_avalon_timer -- /home/zhuangjiayao/altera_pro/26.1/quartus/../ip/altera/eip/altera_avalon_timer/generate_rtl.pl --name=timer_altera_avalon_timer_1935_2qdnrka --dir=/tmp/alt0682_10566713783054980901.dir/0001_timer_gen/ --quartus_dir=/home/zhuangjiayao/altera_pro/26.1/quartus --verilog --config=/tmp/alt0682_10566713783054980901.dir/0001_timer_gen//timer_altera_avalon_timer_1935_2qdnrka_component_configuration.pl  --do_build_sim=0  ]</message>
+   <message level="Info" culprit="timer">Done RTL generation for module 'timer_altera_avalon_timer_1935_2qdnrka'</message>
+  </messages>
+ </entity>
+</deploy>

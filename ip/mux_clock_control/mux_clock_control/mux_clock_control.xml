@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy
+ date="2026.08.17.14:21:41"
+ outputDirectory="/home/zhuangjiayao/iopll_niosv_50_10_glitch_free_mux/ip/mux_clock_control/mux_clock_control/">
+ <perimeter>
+  <parameter
+     name="AUTO_GENERATION_ID"
+     type="Integer"
+     defaultValue="0"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_UNIQUE_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_FAMILY"
+     type="String"
+     defaultValue="Agilex 5"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE"
+     type="String"
+     defaultValue="A5ED013BB32AE4SCS"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_SPEEDGRADE"
+     type="String"
+     defaultValue="4"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_BOARD"
+     type="String"
+     defaultValue="default"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_INCLK0X_CLOCK_RATE"
+     type="Long"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_INCLK0X_CLOCK_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_INCLK0X_RESET_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_INCLK1X_CLOCK_RATE"
+     type="Long"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_INCLK1X_CLOCK_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_INCLK1X_RESET_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <interface name="inclk0x" kind="clock" start="0">
+   <property name="clockRate" value="0" />
+   <property name="externallyDriven" value="false" />
+   <property name="ptfSchematicName" value="" />
+   <port name="inclk0x" direction="input" role="clk" width="1" />
+  </interface>
+  <interface name="inclk1x" kind="clock" start="0">
+   <property name="clockRate" value="0" />
+   <property name="externallyDriven" value="false" />
+   <property name="ptfSchematicName" value="" />
+   <port name="inclk1x" direction="input" role="clk" width="1" />
+  </interface>
+  <interface name="clkselect" kind="conduit" start="0">
+   <property name="associatedClock" value="" />
+   <property name="associatedReset" value="" />
+   <property name="prSafe" value="false" />
+   <port name="clkselect" direction="input" role="export" width="1" />
+  </interface>
+  <interface name="outclk" kind="clock" start="1">
+   <property name="associatedDirectClock" value="" />
+   <property name="clockRate" value="0" />
+   <property name="clockRateKnown" value="false" />
+   <property name="externallyDriven" value="false" />
+   <property name="ptfSchematicName" value="" />
+   <port name="outclk" direction="output" role="clk" width="1" />
+  </interface>
+ </perimeter>
+ <entity kind="mux_clock_control" version="1.0" name="mux_clock_control">
+  <parameter name="AUTO_INCLK1X_CLOCK_RATE" value="-1" />
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter name="AUTO_DEVICE" value="A5ED013BB32AE4SCS" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Agilex 5" />
+  <parameter name="AUTO_BOARD" value="default" />
+  <parameter name="AUTO_INCLK0X_RESET_DOMAIN" value="-1" />
+  <parameter name="AUTO_UNIQUE_ID" value="" />
+  <parameter name="AUTO_INCLK0X_CLOCK_DOMAIN" value="-1" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="4" />
+  <parameter name="AUTO_INCLK0X_CLOCK_RATE" value="-1" />
+  <parameter name="AUTO_INCLK1X_CLOCK_DOMAIN" value="-1" />
+  <parameter name="AUTO_INCLK1X_RESET_DOMAIN" value="-1" />
+  <generatedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_glitch_free_mux/ip/mux_clock_control/mux_clock_control/synth/mux_clock_control.v"
+       attributes="CONTAINS_INLINE_CONFIGURATION" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_glitch_free_mux/ip/mux_clock_control/mux_clock_control/synth/mux_clock_control.v"
+       attributes="CONTAINS_INLINE_CONFIGURATION" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_glitch_free_mux/ip/mux_clock_control/mux_clock_control.ip" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file
+       path="/home/zhuangjiayao/altera_pro/26.1/ip/altera/megafunctions/intelclkctrl/intelclkctrl_hw.tcl" />
+  </childSourceFiles>
+  <messages>
+   <message level="Info" culprit="mux_clock_control">"Generating: mux_clock_control"</message>
+   <message level="Info" culprit="mux_clock_control">"Generating: mux_clock_control_intelclkctrl_201_o5z5vqy"</message>
+   <message level="Info" culprit="mux_clock_control">Generating top-level entity mux_clock_control_intelclkctrl_201_o5z5vqy.</message>
+   <message level="Info" culprit="mux_clock_control">Verilog entity generation was successful</message>
+  </messages>
+ </entity>
+ <entity
+   kind="intelclkctrl"
+   version="2.0.1"
+   name="mux_clock_control_intelclkctrl_201_o5z5vqy">
+  <parameter name="GLITCH_FREE_SWITCHOVER" value="true" />
+  <parameter name="NUM_CLOCKS" value="2" />
+  <parameter name="device_family" value="Agilex 5" />
+  <parameter name="CLOCK_DIVIDER_OUTPUTS" value="1" />
+  <parameter name="CLOCK_DIVIDER_OUTPUTS_KM" value="1" />
+  <parameter name="ENABLE_TYPE" value="2" />
+  <parameter name="ENABLE" value="false" />
+  <parameter name="ENABLE_REGISTER_TYPE" value="1" />
+  <parameter name="CLOCK_DIVIDER" value="false" />
+  <generatedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_glitch_free_mux/ip/mux_clock_control/mux_clock_control/intelclkctrl_201/synth/mux_clock_control_intelclkctrl_201_o5z5vqy.v"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_glitch_free_mux/ip/mux_clock_control/mux_clock_control/intelclkctrl_201/synth/mux_clock_control_intelclkctrl_201_o5z5vqy.v"
+       attributes="" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/home/zhuangjiayao/altera_pro/26.1/ip/altera/megafunctions/intelclkctrl/intelclkctrl_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="mux_clock_control" as="mux_clock_control" />
+  <messages>
+   <message level="Info" culprit="mux_clock_control">"Generating: mux_clock_control_intelclkctrl_201_o5z5vqy"</message>
+   <message level="Info" culprit="mux_clock_control">Generating top-level entity mux_clock_control_intelclkctrl_201_o5z5vqy.</message>
+   <message level="Info" culprit="mux_clock_control">Verilog entity generation was successful</message>
+  </messages>
+ </entity>
+</deploy>

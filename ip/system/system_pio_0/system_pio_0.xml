@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy
+ date="2026.08.17.15:40:28"
+ outputDirectory="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/system_pio_0/">
+ <perimeter>
+  <parameter
+     name="AUTO_GENERATION_ID"
+     type="Integer"
+     defaultValue="0"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_UNIQUE_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_FAMILY"
+     type="String"
+     defaultValue="Agilex 5"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE"
+     type="String"
+     defaultValue="A5ED013BB32AE4SCS"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_SPEEDGRADE"
+     type="String"
+     defaultValue="4"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_BOARD"
+     type="String"
+     defaultValue="default"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_CLOCK_RATE"
+     type="Long"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_CLOCK_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_RESET_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_S1_CPU_INFO_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <interface name="clk" kind="clock" start="0">
+   <property name="clockRate" value="0" />
+   <property name="externallyDriven" value="false" />
+   <property name="ptfSchematicName" value="" />
+   <port name="clk" direction="input" role="clk" width="1" />
+  </interface>
+  <interface name="reset" kind="reset" start="0">
+   <property name="associatedClock" value="clk" />
+   <property name="synchronousEdges" value="DEASSERT" />
+   <port name="reset_n" direction="input" role="reset_n" width="1" />
+  </interface>
+  <interface name="s1" kind="avalon" start="0">
+   <property name="addressAlignment" value="NATIVE" />
+   <property name="addressGroup" value="0" />
+   <property name="addressSpan" value="4" />
+   <property name="addressUnits" value="WORDS" />
+   <property name="alwaysBurstMaxBurst" value="false" />
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="reset" />
+   <property name="bitsPerSymbol" value="8" />
+   <property name="bridgedAddressOffset" value="0" />
+   <property name="bridgesToMaster" value="" />
+   <property name="burstOnBurstBoundariesOnly" value="false" />
+   <property name="burstcountUnits" value="WORDS" />
+   <property name="constantBurstBehavior" value="false" />
+   <property name="explicitAddressSpan" value="0" />
+   <property name="holdTime" value="0" />
+   <property name="interleaveBursts" value="false" />
+   <property name="isBigEndian" value="false" />
+   <property name="isFlash" value="false" />
+   <property name="isMemoryDevice" value="false" />
+   <property name="isNonVolatileStorage" value="false" />
+   <property name="linewrapBursts" value="false" />
+   <property name="maximumPendingReadTransactions" value="0" />
+   <property name="maximumPendingWriteTransactions" value="0" />
+   <property name="minimumReadLatency" value="1" />
+   <property name="minimumResponseLatency" value="1" />
+   <property name="minimumUninterruptedRunLength" value="1" />
+   <property name="prSafe" value="false" />
+   <property name="printableDevice" value="false" />
+   <property name="readLatency" value="0" />
+   <property name="readWaitStates" value="1" />
+   <property name="readWaitTime" value="1" />
+   <property name="registerIncomingSignals" value="false" />
+   <property name="registerOutgoingSignals" value="false" />
+   <property name="setupTime" value="0" />
+   <property name="timingUnits" value="Cycles" />
+   <property name="transparentBridge" value="false" />
+   <property name="waitrequestAllowance" value="0" />
+   <property name="waitrequestTimeout" value="1024" />
+   <property name="wellBehavedWaitrequest" value="false" />
+   <property name="writeLatency" value="0" />
+   <property name="writeWaitStates" value="0" />
+   <property name="writeWaitTime" value="0" />
+   <property name="dfhFeatureGuid" value="0" />
+   <property name="dfhGroupId" value="0" />
+   <property name="dfhParameterId" value="" />
+   <property name="dfhParameterName" value="" />
+   <property name="dfhParameterVersion" value="" />
+   <property name="dfhParameterData" value="" />
+   <property name="dfhParameterDataLength" value="" />
+   <property name="dfhFeatureMajorVersion" value="0" />
+   <property name="dfhFeatureMinorVersion" value="0" />
+   <property name="dfhFeatureId" value="35" />
+   <property name="dfhFeatureType" value="3" />
+   <port name="address" direction="input" role="address" width="2" />
+   <port name="write_n" direction="input" role="write_n" width="1" />
+   <port name="writedata" direction="input" role="writedata" width="32" />
+   <port name="chipselect" direction="input" role="chipselect" width="1" />
+   <port name="readdata" direction="output" role="readdata" width="32" />
+  </interface>
+  <interface name="external_connection" kind="conduit" start="0">
+   <property name="associatedClock" value="" />
+   <property name="associatedReset" value="" />
+   <property name="prSafe" value="false" />
+   <port name="out_port" direction="output" role="export" width="1" />
+  </interface>
+ </perimeter>
+ <entity kind="system_pio_0" version="1.0" name="system_pio_0">
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="-1" />
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter name="AUTO_DEVICE" value="A5ED013BB32AE4SCS" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Agilex 5" />
+  <parameter name="AUTO_BOARD" value="default" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="-1" />
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="-1" />
+  <parameter name="AUTO_UNIQUE_ID" value="" />
+  <parameter name="AUTO_S1_CPU_INFO_ID" value="" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="4" />
+  <generatedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/system_pio_0/synth/system_pio_0.v"
+       attributes="CONTAINS_INLINE_CONFIGURATION" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/system_pio_0/synth/system_pio_0.v"
+       attributes="CONTAINS_INLINE_CONFIGURATION" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/system_pio_0.ip" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file
+       path="/home/zhuangjiayao/altera_pro/26.1/ip/altera/eip/altera_avalon_pio/altera_avalon_pio_hw.tcl" />
+  </childSourceFiles>
+  <messages>
+   <message level="Info" culprit="system_pio_0">"Generating: system_pio_0"</message>
+   <message level="Info" culprit="system_pio_0">"Generating: system_pio_0_altera_avalon_pio_1924_rcjzkka"</message>
+   <message level="Info" culprit="pio_0">Starting RTL generation for module 'system_pio_0_altera_avalon_pio_1924_rcjzkka'</message>
+   <message level="Info" culprit="pio_0">  Generation command is [exec /home/zhuangjiayao/altera_pro/26.1/quartus/linux64//perl/bin/perl -I /home/zhuangjiayao/altera_pro/26.1/quartus/linux64//perl/lib -I /home/zhuangjiayao/altera_pro/26.1/quartus/sopc_builder/bin/europa -I /home/zhuangjiayao/altera_pro/26.1/quartus/sopc_builder/bin/perl_lib -I /home/zhuangjiayao/altera_pro/26.1/quartus/sopc_builder/bin -I /home/zhuangjiayao/altera_pro/26.1/quartus/../ip/altera/sopc_builder_ip/common -I /home/zhuangjiayao/altera_pro/26.1/quartus/../ip/altera/eip/altera_avalon_pio -- /home/zhuangjiayao/altera_pro/26.1/quartus/../ip/altera/eip/altera_avalon_pio/generate_rtl.pl --name=system_pio_0_altera_avalon_pio_1924_rcjzkka --dir=/tmp/alt0682_10566713783054980901.dir/0002_pio_0_gen/ --quartus_dir=/home/zhuangjiayao/altera_pro/26.1/quartus --verilog --config=/tmp/alt0682_10566713783054980901.dir/0002_pio_0_gen//system_pio_0_altera_avalon_pio_1924_rcjzkka_component_configuration.pl  --do_build_sim=0  ]</message>
+   <message level="Info" culprit="pio_0">Done RTL generation for module 'system_pio_0_altera_avalon_pio_1924_rcjzkka'</message>
+  </messages>
+ </entity>
+ <entity
+   kind="altera_avalon_pio"
+   version="19.2.4"
+   name="system_pio_0_altera_avalon_pio_1924_rcjzkka">
+  <parameter name="DEVICE_FAMILY" value="Agilex 5" />
+  <parameter name="derived_do_test_bench_wiring" value="false" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="derived_has_irq" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="derived_has_out" value="true" />
+  <parameter name="derived_has_in" value="false" />
+  <parameter name="resetValue" value="1" />
+  <parameter name="derived_has_tri" value="false" />
+  <parameter name="derived_capture" value="false" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="derived_edge_type" value="NONE" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="derived_irq_type" value="NONE" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="width" value="1" />
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="direction" value="Output" />
+  <generatedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/system_pio_0/altera_avalon_pio_1924/synth/system_pio_0_altera_avalon_pio_1924_rcjzkka.v"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/system_pio_0/altera_avalon_pio_1924/synth/system_pio_0_altera_avalon_pio_1924_rcjzkka.v"
+       attributes="" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/home/zhuangjiayao/altera_pro/26.1/ip/altera/eip/altera_avalon_pio/altera_avalon_pio_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="system_pio_0" as="pio_0" />
+  <messages>
+   <message level="Info" culprit="system_pio_0">"Generating: system_pio_0_altera_avalon_pio_1924_rcjzkka"</message>
+   <message level="Info" culprit="pio_0">Starting RTL generation for module 'system_pio_0_altera_avalon_pio_1924_rcjzkka'</message>
+   <message level="Info" culprit="pio_0">  Generation command is [exec /home/zhuangjiayao/altera_pro/26.1/quartus/linux64//perl/bin/perl -I /home/zhuangjiayao/altera_pro/26.1/quartus/linux64//perl/lib -I /home/zhuangjiayao/altera_pro/26.1/quartus/sopc_builder/bin/europa -I /home/zhuangjiayao/altera_pro/26.1/quartus/sopc_builder/bin/perl_lib -I /home/zhuangjiayao/altera_pro/26.1/quartus/sopc_builder/bin -I /home/zhuangjiayao/altera_pro/26.1/quartus/../ip/altera/sopc_builder_ip/common -I /home/zhuangjiayao/altera_pro/26.1/quartus/../ip/altera/eip/altera_avalon_pio -- /home/zhuangjiayao/altera_pro/26.1/quartus/../ip/altera/eip/altera_avalon_pio/generate_rtl.pl --name=system_pio_0_altera_avalon_pio_1924_rcjzkka --dir=/tmp/alt0682_10566713783054980901.dir/0002_pio_0_gen/ --quartus_dir=/home/zhuangjiayao/altera_pro/26.1/quartus --verilog --config=/tmp/alt0682_10566713783054980901.dir/0002_pio_0_gen//system_pio_0_altera_avalon_pio_1924_rcjzkka_component_configuration.pl  --do_build_sim=0  ]</message>
+   <message level="Info" culprit="pio_0">Done RTL generation for module 'system_pio_0_altera_avalon_pio_1924_rcjzkka'</message>
+  </messages>
+ </entity>
+</deploy>

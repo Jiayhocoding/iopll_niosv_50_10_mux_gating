@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="intelclkctrl_201/sim/mux_clock_control_intelclkctrl_201_o5z5vqy.v"
+   type="VERILOG"
+   library="intelclkctrl_201" />
+ <file
+   path="sim/mux_clock_control.v"
+   type="VERILOG"
+   library="mux_clock_control"
+   hasInlineConfiguration="true" />
+ <topLevel name="mux_clock_control.mux_clock_control" />
+ <deviceFamily name="agilex5" />
+ <device name="A5ED013BB32AE4SCS" />
+</simPackage>

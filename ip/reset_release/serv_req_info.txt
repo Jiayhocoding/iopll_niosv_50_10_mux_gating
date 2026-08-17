@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<internal_error>
+	<sub_system>ERR</sub_system>
+	<callstack>	0x7fff5996ed0c: CCL_ERR + 0xed0c (?err_set_throw_exceptions@@YAX_N@Z + 0x14c)
+	0x7ffee36dde8f: dni_dms + 0x12de8f (?copy_file_to_external_folder@DMS_HANDLE_UTILS@@YA?AV?$basic_result@XVDCL_ERROR@@UOUTCOME_IE_POLICY@QTL@@@outcome_v2@boost@@AEBVDMS_HANDLE@@AEBVFIO_PATH@@@Z + 0x9df)
+	0x7ffee37891b1: dni_dms + 0x1d91b1 (?copy_file_to_external_folder@DMS_HANDLE_UTILS@@YA?AV?$basic_result@XVDCL_ERROR@@UOUTCOME_IE_POLICY@QTL@@@outcome_v2@boost@@AEBVDMS_HANDLE@@AEBVFIO_PATH@@@Z + 0xabd01)
+	0x7fff5a35107f: VCRUNTIME140_1 + 0x107f
+	0x7fff5a3526b4: VCRUNTIME140_1 + 0x26b4 (__NLG_Return2 + 0x1564)
+	0x7fff69b517e5: ntdll + 0xa17e5 (RtlCaptureContext2 + 0x4a5)
+	0x7ffee36ddf6d: dni_dms + 0x12df6d (?copy_file_to_external_folder@DMS_HANDLE_UTILS@@YA?AV?$basic_result@XVDCL_ERROR@@UOUTCOME_IE_POLICY@QTL@@@outcome_v2@boost@@AEBVDMS_HANDLE@@AEBVFIO_PATH@@@Z + 0xabd)
+	0x7fff69ac9a1c: ntdll + 0x19a1c (RtlActivateActivationContextUnsafeFast + 0x11c)
+	0x7fff69b0dd3b: ntdll + 0x5dd3b (LdrShutdownProcess + 0x24b)
+	0x7fff69b0dacc: ntdll + 0x5dacc (RtlExitUserProcess + 0xac)
+	0x7fff68efe82a: KERNEL32 + 0x1e82a (FatalExit + 0xa)
+	0x7fff673d05bb: ucrtbase + 0x205bb (exit + 0x1db)
+	0x7fff673d045e: ucrtbase + 0x2045e (exit + 0x7e)
+	 0x6f9c8ca4: jvm + 0x1e8ca4 (jio_vsnprintf + 0x73214)
+	 0x6fa04425: jvm + 0x224425 (jio_vsnprintf + 0xae995)
+	 0x6fa049c3: jvm + 0x2249c3 (jio_vsnprintf + 0xaef33)
+	 0x6fa02f83: jvm + 0x222f83 (jio_vsnprintf + 0xad4f3)
+	 0x6fa0375e: jvm + 0x22375e (jio_vsnprintf + 0xadcce)
+	 0x6fa03a63: jvm + 0x223a63 (jio_vsnprintf + 0xadfd3)
+	 0x6fa4d31b: jvm + 0x26d31b (JVM_RegisterSignal + 0x60eb)
+	0x7fff673d1bb1: ucrtbase + 0x21bb1 (_configthreadlocale + 0x91)
+	0x7fff68ef7613: KERNEL32 + 0x17613 (BaseThreadInitThunk + 0x13)
+	0x7fff69b026f0: ntdll + 0x526f0 (RtlUserThreadStart + 0x20)
+</callstack>
+	<error>*** Fatal Error: Program termination requested</error>
+	<date>Thu Jun 29 10:51:49 2023
+</date>
+	<version>Version 23.2.0 Build 94 06/14/2023 SC Pro Edition</version>
+</internal_error>

@@ -1,0 +1,18 @@
+# system info mux_clock_control on 2026.08.17.14:25:50
+system_info:
+name,value
+DEVICE,A5ED013BB32AE4SCS
+DEVICE_FAMILY,Agilex 5
+GENERATION_ID,0
+#
+#
+# Files generated for mux_clock_control on 2026.08.17.14:25:50
+files:
+filepath,kind,attributes,module,is_top
+sim/mux_clock_control.v,VERILOG,CONTAINS_INLINE_CONFIGURATION,mux_clock_control,true
+intelclkctrl_201/sim/mux_clock_control_intelclkctrl_201_o5z5vqy.v,VERILOG,,mux_clock_control_intelclkctrl_201_o5z5vqy,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+mux_clock_control.mux_clock_control,mux_clock_control_intelclkctrl_201_o5z5vqy

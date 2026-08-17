@@ -1,0 +1,45 @@
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name IP_TOOL_NAME "QsysPrimePro"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name IP_TOOL_VERSION "26.1"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name IP_TOOL_VENDOR_NAME "Altera"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name IP_TOP_LEVEL_COMPONENT_NAME "intelclkctrl"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name PRE_COMPILED_MODULE "ON"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name OCS_IP_FILE [file join $::quartus(qip_path) "../mux_clock_control.ip"]
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name OCS_IP_TYPE "intelclkctrl"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name OCS_IP_VERSION "2.0.1"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name OCS_IP_HASH "o5z5vqy"
+set_global_assignment -library "mux_clock_control" -name SOPCINFO_FILE [file join $::quartus(qip_path) "mux_clock_control.sopcinfo"]
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name SLD_INFO "QSYS_NAME mux_clock_control HAS_SOPCINFO 1 GENERATION_ID 0"
+set_global_assignment -library "mux_clock_control" -name MISC_FILE [file join $::quartus(qip_path) "mux_clock_control.cmp"]
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name IP_TARGETED_DEVICE_FAMILY "Agilex 5"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name IP_GENERATED_DEVICE_FAMILY "{Agilex 5}"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name IP_QSYS_MODE "STANDALONE"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "mux_clock_control" -name MISC_FILE [file join $::quartus(qip_path) "../mux_clock_control.ip"]
+
+set_global_assignment -entity "mux_clock_control_intelclkctrl_201_o5z5vqy" -library "intelclkctrl_201" -name IP_COMPONENT_NAME "bXV4X2Nsb2NrX2NvbnRyb2xfaW50ZWxjbGtjdHJsXzIwMV9vNXo1dnF5"
+set_global_assignment -entity "mux_clock_control_intelclkctrl_201_o5z5vqy" -library "intelclkctrl_201" -name IP_COMPONENT_DISPLAY_NAME "Q2xvY2sgQ29udHJvbCBBbHRlcmEgSVA="
+set_global_assignment -entity "mux_clock_control_intelclkctrl_201_o5z5vqy" -library "intelclkctrl_201" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "mux_clock_control_intelclkctrl_201_o5z5vqy" -library "intelclkctrl_201" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "mux_clock_control_intelclkctrl_201_o5z5vqy" -library "intelclkctrl_201" -name IP_COMPONENT_AUTHOR "QWx0ZXJh"
+set_global_assignment -entity "mux_clock_control_intelclkctrl_201_o5z5vqy" -library "intelclkctrl_201" -name IP_COMPONENT_VERSION "Mi4wLjE="
+set_global_assignment -entity "mux_clock_control_intelclkctrl_201_o5z5vqy" -library "intelclkctrl_201" -name IP_COMPONENT_DESCRIPTION "PGh0bWw+QWxsb3dzIHNpZ25hbHMgdG8gdXNlIHRoZSBjbG9jayBuZXR3b3JrIGluIHRoZSBkZXZpY2UuPC9odG1sPg=="
+set_global_assignment -entity "mux_clock_control_intelclkctrl_201_o5z5vqy" -library "intelclkctrl_201" -name IP_COMPONENT_GROUP "QmFzaWMgRnVuY3Rpb25zL0Nsb2NrczsgUExMcyBhbmQgUmVzZXRz"
+set_global_assignment -entity "mux_clock_control_intelclkctrl_201_o5z5vqy" -library "intelclkctrl_201" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4Mzc2MS5odG1s"
+set_global_assignment -entity "mux_clock_control_intelclkctrl_201_o5z5vqy" -library "intelclkctrl_201" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzgwMi5odG1s"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name IP_COMPONENT_NAME "bXV4X2Nsb2NrX2NvbnRyb2w="
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name IP_COMPONENT_DISPLAY_NAME "c3lzdGVt"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name IP_COMPONENT_AUTHOR "QWx0ZXJh"
+set_global_assignment -entity "mux_clock_control" -library "mux_clock_control" -name IP_COMPONENT_VERSION "MS4w"
+
+
+set_global_assignment -library "intelclkctrl_201" -name VERILOG_FILE [file join $::quartus(qip_path) "intelclkctrl_201/synth/mux_clock_control_intelclkctrl_201_o5z5vqy.v"]
+set_global_assignment -library "mux_clock_control" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/mux_clock_control.v"]
+
+
+set_global_assignment -entity "mux_clock_control_intelclkctrl_201_o5z5vqy" -library "intelclkctrl_201" -name IP_TOOL_NAME "intelclkctrl"
+set_global_assignment -entity "mux_clock_control_intelclkctrl_201_o5z5vqy" -library "intelclkctrl_201" -name IP_TOOL_VERSION "2.0.1"
+set_global_assignment -entity "mux_clock_control_intelclkctrl_201_o5z5vqy" -library "intelclkctrl_201" -name IP_TOOL_ENV "QsysPrimePro"
+

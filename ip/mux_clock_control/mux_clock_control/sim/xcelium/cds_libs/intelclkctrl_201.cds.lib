@@ -1,0 +1,5 @@
+
+DEFINE                     work             ./../libraries/work/            
+DEFINE                     intelclkctrl_201 ./../libraries/intelclkctrl_201/
+INCLUDE simulator.cds.lib                                                   
+SOFTINCLUDE device.cds.lib                                                  

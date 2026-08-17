@@ -1,0 +1,16 @@
+	component target_iopll is
+		port (
+			refclk             : in  std_logic                    := 'X';             -- clk
+			locked             : out std_logic;                                       -- export
+			rst                : in  std_logic                    := 'X';             -- reset
+			core_avl_address   : in  std_logic_vector(8 downto 0) := (others => 'X'); -- core_avl_address
+			core_avl_clk       : in  std_logic                    := 'X';             -- clk
+			core_avl_read      : in  std_logic                    := 'X';             -- core_avl_read
+			core_avl_readdata  : out std_logic_vector(7 downto 0);                    -- core_avl_readdata
+			core_avl_write     : in  std_logic                    := 'X';             -- core_avl_write
+			core_avl_writedata : in  std_logic_vector(7 downto 0) := (others => 'X'); -- core_avl_writedata
+			outclk_0           : out std_logic;                                       -- clk
+			outclk_1           : out std_logic                                        -- clk
+		);
+	end component target_iopll;
+

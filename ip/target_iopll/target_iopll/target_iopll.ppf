@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pinplan
+ variation_name="iopll_0"
+ megafunction_name="ALTERA_IOPLL"
+ intended_family="Agilex 5"
+ specifies="all_ports">
+ <global>
+  <pin name="refclk" direction="input" scope="external" />
+  <pin name="locked" direction="output" scope="external" />
+  <pin name="rst" direction="input" scope="external" />
+  <pin name="core_avl_address[8..0]" direction="input" scope="external" />
+  <pin name="core_avl_clk" direction="input" scope="external" />
+  <pin name="core_avl_read" direction="input" scope="external" />
+  <pin name="core_avl_readdata[7..0]" direction="output" scope="external" />
+  <pin name="core_avl_write" direction="input" scope="external" />
+  <pin name="core_avl_writedata[7..0]" direction="input" scope="external" />
+  <pin name="outclk_0" direction="output" scope="external" />
+ </global>
+</pinplan>

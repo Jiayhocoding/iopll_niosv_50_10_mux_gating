@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy
+ date="2026.08.17.15:40:28"
+ outputDirectory="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/system_nios_iopll_bridge_0/">
+ <perimeter>
+  <parameter
+     name="AUTO_GENERATION_ID"
+     type="Integer"
+     defaultValue="0"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_UNIQUE_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_FAMILY"
+     type="String"
+     defaultValue="Agilex 5"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE"
+     type="String"
+     defaultValue="A5ED013BB32AE4SCS"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_SPEEDGRADE"
+     type="String"
+     defaultValue="4"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_BOARD"
+     type="String"
+     defaultValue="default"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLOCK_CLOCK_RATE"
+     type="Long"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLOCK_CLOCK_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLOCK_RESET_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_AVS_CPU_INFO_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <interface name="clock" kind="clock" start="0">
+   <property name="clockRate" value="0" />
+   <property name="externallyDriven" value="false" />
+   <property name="ptfSchematicName" value="" />
+   <port name="clk" direction="input" role="clk" width="1" />
+  </interface>
+  <interface name="reset" kind="reset" start="0">
+   <property name="associatedClock" value="clock" />
+   <property name="synchronousEdges" value="DEASSERT" />
+   <port name="rst_n" direction="input" role="reset_n" width="1" />
+  </interface>
+  <interface name="avs" kind="avalon" start="0">
+   <property name="addressAlignment" value="DYNAMIC" />
+   <property name="addressGroup" value="0" />
+   <property name="addressSpan" value="32" />
+   <property name="addressUnits" value="WORDS" />
+   <property name="alwaysBurstMaxBurst" value="false" />
+   <property name="associatedClock" value="clock" />
+   <property name="associatedReset" value="reset" />
+   <property name="bitsPerSymbol" value="8" />
+   <property name="bridgedAddressOffset" value="0" />
+   <property name="bridgesToMaster" value="" />
+   <property name="burstOnBurstBoundariesOnly" value="false" />
+   <property name="burstcountUnits" value="WORDS" />
+   <property name="constantBurstBehavior" value="false" />
+   <property name="explicitAddressSpan" value="0" />
+   <property name="holdTime" value="0" />
+   <property name="interleaveBursts" value="false" />
+   <property name="isBigEndian" value="false" />
+   <property name="isFlash" value="false" />
+   <property name="isMemoryDevice" value="false" />
+   <property name="isNonVolatileStorage" value="false" />
+   <property name="linewrapBursts" value="false" />
+   <property name="maximumPendingReadTransactions" value="0" />
+   <property name="maximumPendingWriteTransactions" value="0" />
+   <property name="minimumReadLatency" value="1" />
+   <property name="minimumResponseLatency" value="1" />
+   <property name="minimumUninterruptedRunLength" value="1" />
+   <property name="prSafe" value="false" />
+   <property name="printableDevice" value="false" />
+   <property name="readLatency" value="0" />
+   <property name="readWaitStates" value="1" />
+   <property name="readWaitTime" value="1" />
+   <property name="registerIncomingSignals" value="false" />
+   <property name="registerOutgoingSignals" value="false" />
+   <property name="setupTime" value="0" />
+   <property name="timingUnits" value="Cycles" />
+   <property name="transparentBridge" value="false" />
+   <property name="waitrequestAllowance" value="0" />
+   <property name="waitrequestTimeout" value="1024" />
+   <property name="wellBehavedWaitrequest" value="false" />
+   <property name="writeLatency" value="0" />
+   <property name="writeWaitStates" value="0" />
+   <property name="writeWaitTime" value="0" />
+   <property name="dfhFeatureGuid" value="0" />
+   <property name="dfhGroupId" value="0" />
+   <property name="dfhParameterId" value="" />
+   <property name="dfhParameterName" value="" />
+   <property name="dfhParameterVersion" value="" />
+   <property name="dfhParameterData" value="" />
+   <property name="dfhParameterDataLength" value="" />
+   <property name="dfhFeatureMajorVersion" value="0" />
+   <property name="dfhFeatureMinorVersion" value="0" />
+   <property name="dfhFeatureId" value="35" />
+   <property name="dfhFeatureType" value="3" />
+   <port name="avs_address" direction="input" role="address" width="3" />
+   <port name="avs_read" direction="input" role="read" width="1" />
+   <port name="avs_write" direction="input" role="write" width="1" />
+   <port name="avs_writedata" direction="input" role="writedata" width="32" />
+   <port name="avs_readdata" direction="output" role="readdata" width="32" />
+   <port
+       name="avs_waitrequest"
+       direction="output"
+       role="waitrequest"
+       width="1" />
+  </interface>
+  <interface name="iopll_cmd" kind="conduit" start="0">
+   <property name="associatedClock" value="clock" />
+   <property name="associatedReset" value="" />
+   <property name="prSafe" value="false" />
+   <port name="cmd_start" direction="output" role="cmd_start" width="1" />
+   <port name="cmd_write" direction="output" role="cmd_write" width="1" />
+   <port name="cmd_address" direction="output" role="cmd_address" width="9" />
+   <port
+       name="cmd_writedata"
+       direction="output"
+       role="cmd_writedata"
+       width="32" />
+   <port name="cmd_readdata" direction="input" role="cmd_readdata" width="32" />
+   <port name="cmd_busy" direction="input" role="cmd_busy" width="1" />
+   <port name="cmd_done" direction="input" role="cmd_done" width="1" />
+   <port name="cmd_error" direction="input" role="cmd_error" width="1" />
+   <port
+       name="pll_locked_async"
+       direction="input"
+       role="pll_locked_async"
+       width="1" />
+   <port
+       name="diagnostic_software_reset"
+       direction="output"
+       role="diagnostic_software_reset"
+       width="1" />
+  </interface>
+ </perimeter>
+ <entity
+   kind="system_nios_iopll_bridge_0"
+   version="1.0"
+   name="system_nios_iopll_bridge_0">
+  <parameter name="AUTO_CLOCK_CLOCK_RATE" value="-1" />
+  <parameter name="AUTO_CLOCK_CLOCK_DOMAIN" value="-1" />
+  <parameter name="AUTO_CLOCK_RESET_DOMAIN" value="-1" />
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter name="AUTO_DEVICE" value="A5ED013BB32AE4SCS" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Agilex 5" />
+  <parameter name="AUTO_BOARD" value="default" />
+  <parameter name="AUTO_UNIQUE_ID" value="" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="4" />
+  <parameter name="AUTO_AVS_CPU_INFO_ID" value="" />
+  <generatedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/system_nios_iopll_bridge_0/synth/system_nios_iopll_bridge_0.v"
+       attributes="CONTAINS_INLINE_CONFIGURATION" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/system_nios_iopll_bridge_0/synth/system_nios_iopll_bridge_0.v"
+       attributes="CONTAINS_INLINE_CONFIGURATION" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/system_nios_iopll_bridge_0.ip" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/nios_iopll_bridge_hw.tcl" />
+  </childSourceFiles>
+  <messages>
+   <message level="Info" culprit="system_nios_iopll_bridge_0">"Generating: system_nios_iopll_bridge_0"</message>
+   <message level="Info" culprit="system_nios_iopll_bridge_0">"Generating: nios_iopll_bridge"</message>
+  </messages>
+ </entity>
+ <entity kind="nios_iopll_bridge" version="1.0" name="nios_iopll_bridge">
+  <generatedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/system_nios_iopll_bridge_0/nios_iopll_bridge_10/synth/nios_iopll_bridge.sv"
+       attributes="TOP_LEVEL_FILE" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/system_nios_iopll_bridge_0/nios_iopll_bridge_10/synth/nios_iopll_bridge.sv"
+       attributes="TOP_LEVEL_FILE" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/nios_iopll_bridge_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="system_nios_iopll_bridge_0" as="nios_iopll_bridge_0" />
+  <messages>
+   <message level="Info" culprit="system_nios_iopll_bridge_0">"Generating: nios_iopll_bridge"</message>
+  </messages>
+ </entity>
+</deploy>

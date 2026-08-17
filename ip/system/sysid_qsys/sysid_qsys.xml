@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy
+ date="2026.08.17.15:40:27"
+ outputDirectory="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/sysid_qsys/">
+ <perimeter>
+  <parameter
+     name="AUTO_GENERATION_ID"
+     type="Integer"
+     defaultValue="0"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_UNIQUE_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_FAMILY"
+     type="String"
+     defaultValue="Agilex 5"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE"
+     type="String"
+     defaultValue="A5ED013BB32AE4SCS"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_SPEEDGRADE"
+     type="String"
+     defaultValue="4"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_BOARD"
+     type="String"
+     defaultValue="default"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_CLOCK_RATE"
+     type="Long"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_CLOCK_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_RESET_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CONTROL_SLAVE_CPU_INFO_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <interface name="clk" kind="clock" start="0">
+   <property name="clockRate" value="0" />
+   <property name="externallyDriven" value="false" />
+   <property name="ptfSchematicName" value="" />
+   <port name="clock" direction="input" role="clk" width="1" />
+  </interface>
+  <interface name="reset" kind="reset" start="0">
+   <property name="associatedClock" value="clk" />
+   <property name="synchronousEdges" value="DEASSERT" />
+   <port name="reset_n" direction="input" role="reset_n" width="1" />
+  </interface>
+  <interface name="control_slave" kind="avalon" start="0">
+   <property name="addressAlignment" value="DYNAMIC" />
+   <property name="addressGroup" value="0" />
+   <property name="addressSpan" value="8" />
+   <property name="addressUnits" value="WORDS" />
+   <property name="alwaysBurstMaxBurst" value="false" />
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="reset" />
+   <property name="bitsPerSymbol" value="8" />
+   <property name="bridgedAddressOffset" value="0" />
+   <property name="bridgesToMaster" value="" />
+   <property name="burstOnBurstBoundariesOnly" value="false" />
+   <property name="burstcountUnits" value="WORDS" />
+   <property name="constantBurstBehavior" value="false" />
+   <property name="explicitAddressSpan" value="0" />
+   <property name="holdTime" value="0" />
+   <property name="interleaveBursts" value="false" />
+   <property name="isBigEndian" value="false" />
+   <property name="isFlash" value="false" />
+   <property name="isMemoryDevice" value="false" />
+   <property name="isNonVolatileStorage" value="false" />
+   <property name="linewrapBursts" value="false" />
+   <property name="maximumPendingReadTransactions" value="0" />
+   <property name="maximumPendingWriteTransactions" value="0" />
+   <property name="minimumReadLatency" value="1" />
+   <property name="minimumResponseLatency" value="1" />
+   <property name="minimumUninterruptedRunLength" value="1" />
+   <property name="prSafe" value="false" />
+   <property name="printableDevice" value="false" />
+   <property name="readLatency" value="0" />
+   <property name="readWaitStates" value="1" />
+   <property name="readWaitTime" value="1" />
+   <property name="registerIncomingSignals" value="false" />
+   <property name="registerOutgoingSignals" value="false" />
+   <property name="setupTime" value="0" />
+   <property name="timingUnits" value="Cycles" />
+   <property name="transparentBridge" value="false" />
+   <property name="waitrequestAllowance" value="0" />
+   <property name="waitrequestTimeout" value="1024" />
+   <property name="wellBehavedWaitrequest" value="false" />
+   <property name="writeLatency" value="0" />
+   <property name="writeWaitStates" value="0" />
+   <property name="writeWaitTime" value="0" />
+   <property name="dfhFeatureGuid" value="0" />
+   <property name="dfhGroupId" value="0" />
+   <property name="dfhParameterId" value="" />
+   <property name="dfhParameterName" value="" />
+   <property name="dfhParameterVersion" value="" />
+   <property name="dfhParameterData" value="" />
+   <property name="dfhParameterDataLength" value="" />
+   <property name="dfhFeatureMajorVersion" value="0" />
+   <property name="dfhFeatureMinorVersion" value="0" />
+   <property name="dfhFeatureId" value="35" />
+   <property name="dfhFeatureType" value="3" />
+   <port name="readdata" direction="output" role="readdata" width="32" />
+   <port name="address" direction="input" role="address" width="1" />
+  </interface>
+ </perimeter>
+ <entity kind="sysid_qsys" version="1.0" name="sysid_qsys">
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="-1" />
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter name="AUTO_DEVICE" value="A5ED013BB32AE4SCS" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Agilex 5" />
+  <parameter name="AUTO_BOARD" value="default" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="-1" />
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="-1" />
+  <parameter name="AUTO_UNIQUE_ID" value="" />
+  <parameter name="AUTO_CONTROL_SLAVE_CPU_INFO_ID" value="" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="4" />
+  <generatedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/sysid_qsys/synth/sysid_qsys.v"
+       attributes="CONTAINS_INLINE_CONFIGURATION" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/sysid_qsys/synth/sysid_qsys.v"
+       attributes="CONTAINS_INLINE_CONFIGURATION" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/sysid_qsys.ip" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file
+       path="/home/zhuangjiayao/altera_pro/26.1/ip/altera/eip/altera_avalon_sysid_qsys/altera_avalon_sysid_qsys_hw.tcl" />
+  </childSourceFiles>
+  <messages>
+   <message level="Info" culprit="sysid_qsys">"Generating: sysid_qsys"</message>
+   <message level="Info" culprit="sysid_qsys">"Generating: altera_avalon_sysid_qsys"</message>
+  </messages>
+ </entity>
+ <entity
+   kind="altera_avalon_sysid_qsys"
+   version="20.0.0"
+   name="altera_avalon_sysid_qsys">
+  <parameter name="HASH_INT" value="740db4e6" />
+  <parameter name="USE_LIVE_TIMESTAMP" value="false" />
+  <parameter name="HASH_ID" value="37" />
+  <parameter name="USE_MANUAL_ID" value="true" />
+  <parameter name="TIMESTAMP" value="0" />
+  <parameter name="id" value="0" />
+  <generatedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/sysid_qsys/altera_avalon_sysid_qsys_2000/synth/altera_avalon_sysid_qsys.v"
+       attributes="TOP_LEVEL_FILE" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/zhuangjiayao/iopll_niosv_50_10_mux_gating/ip/system/sysid_qsys/altera_avalon_sysid_qsys_2000/synth/altera_avalon_sysid_qsys.v"
+       attributes="TOP_LEVEL_FILE" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/home/zhuangjiayao/altera_pro/26.1/ip/altera/eip/altera_avalon_sysid_qsys/altera_avalon_sysid_qsys_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="sysid_qsys" as="sysid_qsys" />
+  <messages>
+   <message level="Info" culprit="sysid_qsys">"Generating: altera_avalon_sysid_qsys"</message>
+  </messages>
+ </entity>
+</deploy>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<internal_error>
+	<sub_system>ERR</sub_system>
+	<callstack>	0x79e7642ddd3d: ccl_err + 0x35d3d (_ZN22ERR_UNWINDER_BACKTRACE15get_stack_traceEPPKviiPv + 0xed)
+	0x79e7689715b6: ccl_msg + 0x8f5b6 (_Z21msg_ie_get_call_stackPv + 0xc4)
+	0x79e76897391c: ccl_msg + 0x9191c (_ZN18MSG_INTERNAL_ERROR12report_fatalEPKcPvb + 0x40)
+	0x79e7642ba107: ccl_err + 0x12107 (_Z26err_report_fatal_exceptionPKcPvb + 0x63)
+	0x79e7642ccbb1: ccl_err + 0x24bb1 (err_sigaction_handler + 0x727)
+	0x79e763245330: c + 0x45330
+	 0x448b11e0:
+</callstack>
+	<error>*** Fatal Error: Segment Violation: faulting address=0x448b11e0, PC=0x448b11e0 :  0x448b11e0: </error>
+	<date>Wed Aug 12 12:00:31 2026
+</date>
+	<version>Version 26.1.0 Build 110 03/26/2026 SC Pro Edition</version>
+</internal_error>

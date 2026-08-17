@@ -1,0 +1,5 @@
+
+DEFINE                     work              ./../libraries/work/             
+DEFINE                     mux_clock_control ./../libraries/mux_clock_control/
+INCLUDE simulator.cds.lib                                                     
+SOFTINCLUDE device.cds.lib                                                    

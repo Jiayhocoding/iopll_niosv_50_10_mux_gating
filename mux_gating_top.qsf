@@ -1,0 +1,1007 @@
+#============================================================
+# Build by Terasic V2.1.0
+#============================================================
+
+set_global_assignment -name FAMILY "Agilex 5"
+set_global_assignment -name DEVICE A5ED013BB32AE4SCS
+set_global_assignment -name TOP_LEVEL_ENTITY mux_gating_top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "25.1.0 PRO EDITION"
+set_global_assignment -name LAST_QUARTUS_VERSION "26.1.0 Pro Edition"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "WED JUN  4 17:29:13 2025"
+set_global_assignment -name DEVICE_FILTER_PACKAGE VPBGA
+#============================================================
+# CLOCK
+#============================================================
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to CLOCK0_50 -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to CLOCK1_50 -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to CLOCK2_50 -entity mux_gating_top
+set_location_assignment PIN_CH128 -to CLOCK0_50
+set_location_assignment PIN_D8 -to CLOCK1_50
+set_location_assignment PIN_BM71 -to CLOCK2_50
+
+#============================================================
+# KEY
+#============================================================
+set_instance_assignment -name IO_STANDARD "1.2-V" -to CPU_RESET_n -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to KEY[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to KEY[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to KEY[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to KEY[3] -entity mux_gating_top
+set_location_assignment PIN_BM78 -to CPU_RESET_n
+set_location_assignment PIN_BW59  -to KEY[0]
+set_location_assignment PIN_CA59  -to KEY[1]
+set_location_assignment PIN_CF71  -to KEY[2]
+set_location_assignment PIN_CH71  -to KEY[3]
+
+#============================================================
+# SW
+#============================================================
+set_instance_assignment -name IO_STANDARD "1.2-V" -to SW[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to SW[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to SW[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to SW[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to SW[4] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to SW[5] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to SW[6] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to SW[7] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to SW[8] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to SW[9] -entity mux_gating_top
+set_location_assignment PIN_BM62  -to SW[0]
+set_location_assignment PIN_BP62  -to SW[1]
+set_location_assignment PIN_BH62  -to SW[2]
+set_location_assignment PIN_BH59  -to SW[3]
+set_location_assignment PIN_BM59  -to SW[4]
+set_location_assignment PIN_BK59  -to SW[5]
+set_location_assignment PIN_BU62  -to SW[6]
+set_location_assignment PIN_CF59 -to SW[7]
+set_location_assignment PIN_BU59  -to SW[8]
+set_location_assignment PIN_BR59  -to SW[9]
+
+#============================================================
+# LED
+#============================================================
+set_instance_assignment -name IO_STANDARD "1.2-V" -to LEDR[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to LEDR[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to LEDR[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to LEDR[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to LEDR[4] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to LEDR[5] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to LEDR[6] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to LEDR[7] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to LEDR[8] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to LEDR[9] -entity mux_gating_top
+set_location_assignment PIN_CC71  -to LEDR[0]
+set_location_assignment PIN_BH78 -to LEDR[1]
+set_location_assignment PIN_CH69  -to LEDR[2]
+set_location_assignment PIN_CF69  -to LEDR[3]
+set_location_assignment PIN_CA62  -to LEDR[4]
+set_location_assignment PIN_CC62  -to LEDR[5]
+set_location_assignment PIN_CF62  -to LEDR[6]
+set_location_assignment PIN_BM69 -to LEDR[7]
+set_location_assignment PIN_CA71 -to LEDR[8]
+set_location_assignment PIN_BR62 -to LEDR[9]
+
+#============================================================
+# Seg7
+#============================================================
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX0[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX0[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX0[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX0[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX0[4] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX0[5] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX0[6] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX1[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX1[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX1[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX1[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX1[4] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX1[5] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX1[6] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX2[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX2[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX2[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX2[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX2[4] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX2[5] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX2[6] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX3[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX3[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX3[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX3[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX3[4] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX3[5] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX3[6] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX4[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX4[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX4[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX4[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX4[4] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX4[5] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX4[6] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX5[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX5[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX5[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX5[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX5[4] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX5[5] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HEX5[6] -entity mux_gating_top
+set_location_assignment PIN_BP81  -to HEX0[0]
+set_location_assignment PIN_BM81  -to HEX0[1]
+set_location_assignment PIN_BM89  -to HEX0[2]
+set_location_assignment PIN_BK89  -to HEX0[3]
+set_location_assignment PIN_BH92  -to HEX0[4]
+set_location_assignment PIN_BM92  -to HEX0[5]
+set_location_assignment PIN_BP92  -to HEX0[6]
+set_location_assignment PIN_CA78  -to HEX1[0]
+set_location_assignment PIN_BW78  -to HEX1[1]
+set_location_assignment PIN_BU78  -to HEX1[2]
+set_location_assignment PIN_BR78  -to HEX1[3]
+set_location_assignment PIN_BU81  -to HEX1[4]
+set_location_assignment PIN_BR81  -to HEX1[5]
+set_location_assignment PIN_CA89  -to HEX1[6]
+set_location_assignment PIN_BW89  -to HEX2[0]
+set_location_assignment PIN_BU92  -to HEX2[1]
+set_location_assignment PIN_BR92  -to HEX2[2]
+set_location_assignment PIN_BU89  -to HEX2[3]
+set_location_assignment PIN_BR89  -to HEX2[4]
+set_location_assignment PIN_CF78  -to HEX2[5]
+set_location_assignment PIN_CH78  -to HEX2[6]
+set_location_assignment PIN_CC81  -to HEX3[0]
+set_location_assignment PIN_CA81  -to HEX3[1]
+set_location_assignment PIN_CH81  -to HEX3[2]
+set_location_assignment PIN_CF81  -to HEX3[3]
+set_location_assignment PIN_CF89  -to HEX3[4]
+set_location_assignment PIN_CH89  -to HEX3[5]
+set_location_assignment PIN_CH92  -to HEX3[6]
+set_location_assignment PIN_CF92  -to HEX4[0]
+set_location_assignment PIN_CA92  -to HEX4[1]
+set_location_assignment PIN_CC92  -to HEX4[2]
+set_location_assignment PIN_CL76  -to HEX4[3]
+set_location_assignment PIN_CK76  -to HEX4[4]
+set_location_assignment PIN_CL82  -to HEX4[5]
+set_location_assignment PIN_CK80  -to HEX4[6]
+set_location_assignment PIN_CL85  -to HEX5[0]
+set_location_assignment PIN_CK85  -to HEX5[1]
+set_location_assignment PIN_BK69  -to HEX5[2]
+set_location_assignment PIN_BP71  -to HEX5[3]
+set_location_assignment PIN_BH89  -to HEX5[4]
+set_location_assignment PIN_BH71  -to HEX5[5]
+set_location_assignment PIN_CH62 -to HEX5[6]
+
+#============================================================
+# SDRAM
+#============================================================
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_CLK
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_CKE
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_ADDR[0]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_ADDR[1]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_ADDR[2]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_ADDR[3]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_ADDR[4]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_ADDR[5]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_ADDR[6]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_ADDR[7]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_ADDR[8]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_ADDR[9]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_ADDR[10]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_ADDR[11]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_ADDR[12]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_BA[0]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_BA[1]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[0]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[1]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[2]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[3]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[4]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[5]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[6]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[7]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[8]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[9]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[10]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[11]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[12]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[13]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[14]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[15]
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_LDQM
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_UDQM
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_CS_n -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_WE_n -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_CAS_n -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_RAS_n -entity mux_gating_top
+set_location_assignment PIN_B39   -to DRAM_CLK
+set_location_assignment PIN_B35   -to DRAM_CKE
+set_location_assignment PIN_F27   -to DRAM_ADDR[0]
+set_location_assignment PIN_F24   -to DRAM_ADDR[1]
+set_location_assignment PIN_H27   -to DRAM_ADDR[2]
+set_location_assignment PIN_D24   -to DRAM_ADDR[3]
+set_location_assignment PIN_H18   -to DRAM_ADDR[4]
+set_location_assignment PIN_D15   -to DRAM_ADDR[5]
+set_location_assignment PIN_F18   -to DRAM_ADDR[6]
+set_location_assignment PIN_F15   -to DRAM_ADDR[7]
+set_location_assignment PIN_K8    -to DRAM_ADDR[8]
+set_location_assignment PIN_F8    -to DRAM_ADDR[9]
+set_location_assignment PIN_C2    -to DRAM_ADDR[10]
+set_location_assignment PIN_A17   -to DRAM_ADDR[11]
+set_location_assignment PIN_D4    -to DRAM_ADDR[12]
+set_location_assignment PIN_D34   -to DRAM_BA[0]
+set_location_assignment PIN_F4    -to DRAM_BA[1]
+set_location_assignment PIN_A14   -to DRAM_DQ[0]
+set_location_assignment PIN_A11   -to DRAM_DQ[1]
+set_location_assignment PIN_B14   -to DRAM_DQ[2]
+set_location_assignment PIN_B11   -to DRAM_DQ[3]
+set_location_assignment PIN_A20   -to DRAM_DQ[4]
+set_location_assignment PIN_A8    -to DRAM_DQ[5]
+set_location_assignment PIN_A23   -to DRAM_DQ[6]
+set_location_assignment PIN_B4    -to DRAM_DQ[7]
+set_location_assignment PIN_B20   -to DRAM_DQ[8]
+set_location_assignment PIN_B23   -to DRAM_DQ[9]
+set_location_assignment PIN_B26   -to DRAM_DQ[10]
+set_location_assignment PIN_B30   -to DRAM_DQ[11]
+set_location_assignment PIN_A39   -to DRAM_DQ[12]
+set_location_assignment PIN_A30   -to DRAM_DQ[13]
+set_location_assignment PIN_A35   -to DRAM_DQ[14]
+set_location_assignment PIN_A33   -to DRAM_DQ[15]
+set_location_assignment PIN_K4    -to DRAM_LDQM
+set_location_assignment PIN_G2    -to DRAM_UDQM
+set_location_assignment PIN_H8 -to DRAM_CS_n
+set_location_assignment PIN_J2 -to DRAM_WE_n
+set_location_assignment PIN_J1 -to DRAM_CAS_n
+set_location_assignment PIN_G1 -to DRAM_RAS_n
+
+#============================================================
+# DDR4
+#============================================================
+set_instance_assignment -name IO_STANDARD "1.2-V TRUE DIFFERENTIAL SIGNALING" -to DDR4_REFCLK_p -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[0]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[1]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[2]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[3]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[4]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[5]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[6]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[7]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[8]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[9]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[10]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[11]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[12]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[13]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[14]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[15]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_A[16]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_BA[0]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_BA[1]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_BG[0]
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to DDR4_CK
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to DDR4_CK_n -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_CKE
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V POD" -to DDR4_DQS[0]
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V POD" -to DDR4_DQS[1]
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V POD" -to DDR4_DQS[2]
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V POD" -to DDR4_DQS[3]
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V POD" -to DDR4_DQS_n[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V POD" -to DDR4_DQS_n[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V POD" -to DDR4_DQS_n[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V POD" -to DDR4_DQS_n[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[0]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[1]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[2]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[3]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[4]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[5]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[6]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[7]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[8]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[9]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[10]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[11]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[12]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[13]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[14]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[15]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[16]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[17]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[18]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[19]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[20]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[21]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[22]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[23]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[24]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[25]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[26]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[27]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[28]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[29]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[30]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DQ[31]
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DBI_n[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DBI_n[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DBI_n[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V POD" -to DDR4_DBI_n[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_CS_n -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_RESET_n -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_ODT
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_PAR
+set_instance_assignment -name IO_STANDARD "1.2-V" -to DDR4_ALERT_n -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to DDR4_ACT_n -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to DDR4_RZQ -entity mux_gating_top
+set_location_assignment PIN_AB117 -to DDR4_REFCLK_p
+set_location_assignment PIN_T114  -to DDR4_A[0]
+set_location_assignment PIN_P114  -to DDR4_A[1]
+set_location_assignment PIN_V117  -to DDR4_A[2]
+set_location_assignment PIN_T117  -to DDR4_A[3]
+set_location_assignment PIN_M114  -to DDR4_A[4]
+set_location_assignment PIN_K114  -to DDR4_A[5]
+set_location_assignment PIN_V108  -to DDR4_A[6]
+set_location_assignment PIN_T108  -to DDR4_A[7]
+set_location_assignment PIN_T105  -to DDR4_A[8]
+set_location_assignment PIN_P105  -to DDR4_A[9]
+set_location_assignment PIN_M105  -to DDR4_A[10]
+set_location_assignment PIN_K105  -to DDR4_A[11]
+set_location_assignment PIN_AG111 -to DDR4_A[12]
+set_location_assignment PIN_Y114  -to DDR4_A[13]
+set_location_assignment PIN_AB114 -to DDR4_A[14]
+set_location_assignment PIN_AK107 -to DDR4_A[15]
+set_location_assignment PIN_AK104 -to DDR4_A[16]
+set_location_assignment PIN_AB108 -to DDR4_BA[0]
+set_location_assignment PIN_Y105  -to DDR4_BA[1]
+set_location_assignment PIN_AB105 -to DDR4_BG[0]
+set_location_assignment PIN_H108  -to DDR4_CK
+set_location_assignment PIN_F108 -to DDR4_CK_n
+set_location_assignment PIN_F105  -to DDR4_CKE
+set_location_assignment PIN_B122  -to DDR4_DQS[0]
+set_location_assignment PIN_AG90  -to DDR4_DQS[1]
+set_location_assignment PIN_K95   -to DDR4_DQS[2]
+set_location_assignment PIN_F95   -to DDR4_DQS[3]
+set_location_assignment PIN_A125 -to DDR4_DQS_n[0]
+set_location_assignment PIN_AG93 -to DDR4_DQS_n[1]
+set_location_assignment PIN_M95 -to DDR4_DQS_n[2]
+set_location_assignment PIN_D95 -to DDR4_DQS_n[3]
+set_location_assignment PIN_B128  -to DDR4_DQ[0]
+set_location_assignment PIN_A116  -to DDR4_DQ[1]
+set_location_assignment PIN_A128  -to DDR4_DQ[2]
+set_location_assignment PIN_B116  -to DDR4_DQ[3]
+set_location_assignment PIN_B130  -to DDR4_DQ[4]
+set_location_assignment PIN_B113  -to DDR4_DQ[5]
+set_location_assignment PIN_A130  -to DDR4_DQ[6]
+set_location_assignment PIN_A113  -to DDR4_DQ[7]
+set_location_assignment PIN_AG100 -to DDR4_DQ[8]
+set_location_assignment PIN_Y98   -to DDR4_DQ[9]
+set_location_assignment PIN_AG104 -to DDR4_DQ[10]
+set_location_assignment PIN_Y95   -to DDR4_DQ[11]
+set_location_assignment PIN_AC96  -to DDR4_DQ[12]
+set_location_assignment PIN_Y87   -to DDR4_DQ[13]
+set_location_assignment PIN_AC100 -to DDR4_DQ[14]
+set_location_assignment PIN_Y84   -to DDR4_DQ[15]
+set_location_assignment PIN_T95   -to DDR4_DQ[16]
+set_location_assignment PIN_K84   -to DDR4_DQ[17]
+set_location_assignment PIN_P95   -to DDR4_DQ[18]
+set_location_assignment PIN_M84   -to DDR4_DQ[19]
+set_location_assignment PIN_T98   -to DDR4_DQ[20]
+set_location_assignment PIN_V98   -to DDR4_DQ[21]
+set_location_assignment PIN_T84   -to DDR4_DQ[22]
+set_location_assignment PIN_P84   -to DDR4_DQ[23]
+set_location_assignment PIN_M98   -to DDR4_DQ[24]
+set_location_assignment PIN_D84   -to DDR4_DQ[25]
+set_location_assignment PIN_K98   -to DDR4_DQ[26]
+set_location_assignment PIN_K87   -to DDR4_DQ[27]
+set_location_assignment PIN_F98   -to DDR4_DQ[28]
+set_location_assignment PIN_F84   -to DDR4_DQ[29]
+set_location_assignment PIN_H98   -to DDR4_DQ[30]
+set_location_assignment PIN_M87   -to DDR4_DQ[31]
+set_location_assignment PIN_B119 -to DDR4_DBI_n[0]
+set_location_assignment PIN_AC90 -to DDR4_DBI_n[1]
+set_location_assignment PIN_V87 -to DDR4_DBI_n[2]
+set_location_assignment PIN_H87 -to DDR4_DBI_n[3]
+set_location_assignment PIN_K117 -to DDR4_CS_n
+set_location_assignment PIN_H117 -to DDR4_RESET_n
+set_location_assignment PIN_F114  -to DDR4_ODT
+set_location_assignment PIN_K108  -to DDR4_PAR
+set_location_assignment PIN_Y108 -to DDR4_ALERT_n
+set_location_assignment PIN_M117 -to DDR4_ACT_n
+set_location_assignment PIN_AK111 -to DDR4_RZQ
+
+#============================================================
+# Video-In
+#============================================================
+set_instance_assignment -name IO_STANDARD "1.2-V" -to TD_CLK27 -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to TD_HS -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to TD_VS -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to TD_DATA[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to TD_DATA[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to TD_DATA[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to TD_DATA[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to TD_DATA[4] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to TD_DATA[5] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to TD_DATA[6] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to TD_DATA[7] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to TD_RESET_n -entity mux_gating_top
+set_location_assignment PIN_BF75  -to TD_CLK27
+set_location_assignment PIN_BE93  -to TD_HS
+set_location_assignment PIN_BE96  -to TD_VS
+set_location_assignment PIN_BF72  -to TD_DATA[0]
+set_location_assignment PIN_BE75  -to TD_DATA[1]
+set_location_assignment PIN_BE79  -to TD_DATA[2]
+set_location_assignment PIN_BF83  -to TD_DATA[3]
+set_location_assignment PIN_BE83  -to TD_DATA[4]
+set_location_assignment PIN_BE86  -to TD_DATA[5]
+set_location_assignment PIN_BF86  -to TD_DATA[6]
+set_location_assignment PIN_BF90  -to TD_DATA[7]
+set_location_assignment PIN_BF93 -to TD_RESET_n
+
+#============================================================
+# HDMI
+#============================================================
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_LRCLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_MCLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_SCLK
+set_instance_assignment -name IO_STANDARD "1.2-V" -to HDMI_TX_CLK -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_HS
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_VS
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[14]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[16]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[17]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[18]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[19]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[20]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[21]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[22]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_D[23]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_DE
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_TX_INT
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HDMI_I2S
+set_location_assignment PIN_BP112 -to HDMI_LRCLK
+set_location_assignment PIN_BM118 -to HDMI_MCLK
+set_location_assignment PIN_BM112 -to HDMI_SCLK
+set_location_assignment PIN_CH59  -to HDMI_TX_CLK
+set_location_assignment PIN_BR109 -to HDMI_TX_HS
+set_location_assignment PIN_BE107 -to HDMI_TX_VS
+set_location_assignment PIN_CD134 -to HDMI_TX_D[0]
+set_location_assignment PIN_CD135 -to HDMI_TX_D[1]
+set_location_assignment PIN_CG134 -to HDMI_TX_D[2]
+set_location_assignment PIN_CG135 -to HDMI_TX_D[3]
+set_location_assignment PIN_CH132 -to HDMI_TX_D[4]
+set_location_assignment PIN_CF132 -to HDMI_TX_D[5]
+set_location_assignment PIN_CF128 -to HDMI_TX_D[6]
+set_location_assignment PIN_CK134 -to HDMI_TX_D[7]
+set_location_assignment PIN_CL125 -to HDMI_TX_D[8]
+set_location_assignment PIN_CF121 -to HDMI_TX_D[9]
+set_location_assignment PIN_CF118 -to HDMI_TX_D[10]
+set_location_assignment PIN_BU118 -to HDMI_TX_D[11]
+set_location_assignment PIN_BR118 -to HDMI_TX_D[12]
+set_location_assignment PIN_CA118 -to HDMI_TX_D[13]
+set_location_assignment PIN_BW118 -to HDMI_TX_D[14]
+set_location_assignment PIN_CL128 -to HDMI_TX_D[15]
+set_location_assignment PIN_CL130 -to HDMI_TX_D[16]
+set_location_assignment PIN_CK125 -to HDMI_TX_D[17]
+set_location_assignment PIN_CK128 -to HDMI_TX_D[18]
+set_location_assignment PIN_BF111 -to HDMI_TX_D[19]
+set_location_assignment PIN_BH109 -to HDMI_TX_D[20]
+set_location_assignment PIN_BE115 -to HDMI_TX_D[21]
+set_location_assignment PIN_BF115 -to HDMI_TX_D[22]
+set_location_assignment PIN_BU109 -to HDMI_TX_D[23]
+set_location_assignment PIN_BK109 -to HDMI_TX_DE
+set_location_assignment PIN_BE111 -to HDMI_TX_INT
+set_location_assignment PIN_BK118 -to HDMI_I2S
+
+#============================================================
+# Audio
+#============================================================
+set_instance_assignment -name IO_STANDARD "1.2-V" -to AUD_BCLK -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to AUD_XCK -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to AUD_ADCLRCK -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to AUD_ADCDAT -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to AUD_DACLRCK -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to AUD_DACDAT -entity mux_gating_top
+set_location_assignment PIN_CL97  -to AUD_BCLK
+set_location_assignment PIN_CK97  -to AUD_XCK
+set_location_assignment PIN_CK88  -to AUD_ADCLRCK
+set_location_assignment PIN_CL91  -to AUD_ADCDAT
+set_location_assignment PIN_CK94  -to AUD_DACLRCK
+set_location_assignment PIN_CL88  -to AUD_DACDAT
+
+#============================================================
+# ADC
+#============================================================
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ADC_SCK -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ADC_SDO -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ADC_SDI -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ADC_CS_n -entity mux_gating_top
+set_location_assignment PIN_CH4 -to ADC_SCK
+set_location_assignment PIN_CK4 -to ADC_SDO
+set_location_assignment PIN_BF32 -to ADC_SDI
+set_location_assignment PIN_BP22 -to ADC_CS_n
+
+#============================================================
+# I2C for Camera, Audio, Video-In, Temerature Sensor and Fan Control
+#============================================================
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to FPGA_I2C_SCLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to FPGA_I2C_SDAT
+set_location_assignment PIN_BF120 -to FPGA_I2C_SCLK
+set_location_assignment PIN_BH118 -to FPGA_I2C_SDAT
+
+#============================================================
+# GPIO
+#============================================================
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[4] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[5] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[6] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[7] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[8] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[9] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[10] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[11] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[12] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[13] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[14] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[15] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[16] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[17] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[18] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[19] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[20] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[21] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[22] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[23] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[24] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[25] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[26] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[27] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[28] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[29] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[30] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[31] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[32] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[33] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[34] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO_D[35] -entity mux_gating_top
+set_location_assignment PIN_BK31 -to GPIO_D[0]
+set_location_assignment PIN_BE43 -to GPIO_D[1]
+set_location_assignment PIN_BF29 -to GPIO_D[2]
+set_location_assignment PIN_BF40 -to GPIO_D[3]
+set_location_assignment PIN_BK28 -to GPIO_D[4]
+set_location_assignment PIN_BM31 -to GPIO_D[5]
+set_location_assignment PIN_BM28 -to GPIO_D[6]
+set_location_assignment PIN_BP31 -to GPIO_D[7]
+set_location_assignment PIN_BR31 -to GPIO_D[8]
+set_location_assignment PIN_BU28 -to GPIO_D[9]
+set_location_assignment PIN_BU31 -to GPIO_D[10]
+set_location_assignment PIN_BW28 -to GPIO_D[11]
+set_location_assignment PIN_BR22 -to GPIO_D[12]
+set_location_assignment PIN_BU19 -to GPIO_D[13]
+set_location_assignment PIN_BU22 -to GPIO_D[14]
+set_location_assignment PIN_BW19 -to GPIO_D[15]
+set_location_assignment PIN_BH28 -to GPIO_D[16]
+set_location_assignment PIN_BR28 -to GPIO_D[17]
+set_location_assignment PIN_BF36 -to GPIO_D[18]
+set_location_assignment PIN_BE29 -to GPIO_D[19]
+set_location_assignment PIN_BM22 -to GPIO_D[20]
+set_location_assignment PIN_BK22 -to GPIO_D[21]
+set_location_assignment PIN_BR19 -to GPIO_D[22]
+set_location_assignment PIN_BM19 -to GPIO_D[23]
+set_location_assignment PIN_BK19 -to GPIO_D[24]
+set_location_assignment PIN_BH19 -to GPIO_D[25]
+set_location_assignment PIN_BF25 -to GPIO_D[26]
+set_location_assignment PIN_CF9 -to GPIO_D[27]
+set_location_assignment PIN_CH12 -to GPIO_D[28]
+set_location_assignment PIN_CF12 -to GPIO_D[29]
+set_location_assignment PIN_CK2 -to GPIO_D[30]
+set_location_assignment PIN_CJ2 -to GPIO_D[31]
+set_location_assignment PIN_BE25 -to GPIO_D[32]
+set_location_assignment PIN_BF21 -to GPIO_D[33]
+set_location_assignment PIN_BF16 -to GPIO_D[34]
+set_location_assignment PIN_BE21 -to GPIO_D[35]
+
+#============================================================
+# HSMC
+#============================================================
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_TX_p[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_TX_p[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_TX_p[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_TX_p[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_TX_n[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_TX_n[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_TX_n[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_TX_n[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_RX_p[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_RX_p[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_RX_p[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_RX_p[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_RX_n[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_RX_n[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_RX_n[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to HSMC_GTS_RX_n[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "CURRENT MODE LOGIC (CML)" -to HSMC_GTS_RX_REFCLK_p -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HSMC_I2C_SCL -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HSMC_I2C_SDA -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_CLK_IN[0]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_CLK_IN[1]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_CLK_IN[2]
+set_instance_assignment -name IO_STANDARD "CURRENT MODE LOGIC (CML)" -to HSMC_GTS_REFCLK_p -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HSMC_B5B_D[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to HSMC_B5B_D[1]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[0]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[1]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[2]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[3]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[4]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[5]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[6]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[7]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[8]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[9]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[10]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[11]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[12]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[13]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[14]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[15]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[16]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[17]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[18]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[19]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[20]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[21]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[22]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[23]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[24]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[25]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[26]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[27]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[28]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[29]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[30]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[31]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[32]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[33]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[34]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[35]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[36]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[37]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[38]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[39]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[40]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[41]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[42]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[43]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[44]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[45]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[46]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[47]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[48]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[49]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[50]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[51]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[52]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[53]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[54]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[55]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[56]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[57]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[58]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[59]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[60]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[61]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[62]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[63]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[64]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[65]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[66]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[67]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[68]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[69]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[70]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[71]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[72]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[73]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[74]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[75]
+set_instance_assignment -name IO_STANDARD "2.5-V LVCMOS" -to HSMC_D[76]
+set_location_assignment PIN_AU129 -to HSMC_GTS_TX_p[0]
+set_location_assignment PIN_AR129 -to HSMC_GTS_TX_p[1]
+set_location_assignment PIN_AN129 -to HSMC_GTS_TX_p[2]
+set_location_assignment PIN_AL129 -to HSMC_GTS_TX_p[3]
+set_location_assignment PIN_AU126 -to HSMC_GTS_TX_n[0]
+set_location_assignment PIN_AR126 -to HSMC_GTS_TX_n[1]
+set_location_assignment PIN_AN126 -to HSMC_GTS_TX_n[2]
+set_location_assignment PIN_AL126 -to HSMC_GTS_TX_n[3]
+set_location_assignment PIN_AT135 -to HSMC_GTS_RX_p[0]
+set_location_assignment PIN_AP135 -to HSMC_GTS_RX_p[1]
+set_location_assignment PIN_AM135 -to HSMC_GTS_RX_p[2]
+set_location_assignment PIN_AK135 -to HSMC_GTS_RX_p[3]
+set_location_assignment PIN_AT133 -to HSMC_GTS_RX_n[0]
+set_location_assignment PIN_AP133 -to HSMC_GTS_RX_n[1]
+set_location_assignment PIN_AM133 -to HSMC_GTS_RX_n[2]
+set_location_assignment PIN_AK133 -to HSMC_GTS_RX_n[3]
+set_location_assignment PIN_AT120 -to HSMC_GTS_RX_REFCLK_p
+set_location_assignment PIN_BR112 -to HSMC_I2C_SCL
+set_location_assignment PIN_BM109 -to HSMC_I2C_SDA
+set_location_assignment PIN_V18   -to HSMC_CLK_IN[0]
+set_location_assignment PIN_W2    -to HSMC_CLK_IN[1]
+set_location_assignment PIN_V37   -to HSMC_CLK_IN[2]
+set_location_assignment PIN_AP120 -to HSMC_GTS_REFCLK_p
+set_location_assignment PIN_BF107 -to HSMC_B5B_D[0]
+set_location_assignment PIN_BF104 -to HSMC_B5B_D[1]
+set_location_assignment PIN_K34   -to HSMC_D[0]
+set_location_assignment PIN_F34   -to HSMC_D[1]
+set_location_assignment PIN_K37   -to HSMC_D[2]
+set_location_assignment PIN_H37   -to HSMC_D[3]
+set_location_assignment PIN_P34   -to HSMC_D[4]
+set_location_assignment PIN_M37   -to HSMC_D[5]
+set_location_assignment PIN_Y34   -to HSMC_D[6]
+set_location_assignment PIN_Y15   -to HSMC_D[7]
+set_location_assignment PIN_AK32  -to HSMC_D[8]
+set_location_assignment PIN_M34   -to HSMC_D[9]
+set_location_assignment PIN_AL32  -to HSMC_D[10]
+set_location_assignment PIN_AK21  -to HSMC_D[11]
+set_location_assignment PIN_AG29  -to HSMC_D[12]
+set_location_assignment PIN_AL16  -to HSMC_D[13]
+set_location_assignment PIN_AL29  -to HSMC_D[14]
+set_location_assignment PIN_AJ1   -to HSMC_D[15]
+set_location_assignment PIN_AL25  -to HSMC_D[16]
+set_location_assignment PIN_AB8   -to HSMC_D[17]
+set_location_assignment PIN_AK25  -to HSMC_D[18]
+set_location_assignment PIN_Y8    -to HSMC_D[19]
+set_location_assignment PIN_AK16  -to HSMC_D[20]
+set_location_assignment PIN_AF2   -to HSMC_D[21]
+set_location_assignment PIN_AG13  -to HSMC_D[22]
+set_location_assignment PIN_AB4   -to HSMC_D[23]
+set_location_assignment PIN_AH8   -to HSMC_D[24]
+set_location_assignment PIN_AD1   -to HSMC_D[25]
+set_location_assignment PIN_AH4   -to HSMC_D[26]
+set_location_assignment PIN_AD2   -to HSMC_D[27]
+set_location_assignment PIN_AE4   -to HSMC_D[28]
+set_location_assignment PIN_V8    -to HSMC_D[29]
+set_location_assignment PIN_T15   -to HSMC_D[30]
+set_location_assignment PIN_Y4    -to HSMC_D[31]
+set_location_assignment PIN_T34   -to HSMC_D[32]
+set_location_assignment PIN_AA1   -to HSMC_D[33]
+set_location_assignment PIN_T37   -to HSMC_D[34]
+set_location_assignment PIN_AC43  -to HSMC_D[35]
+set_location_assignment PIN_AC36  -to HSMC_D[36]
+set_location_assignment PIN_Y27   -to HSMC_D[37]
+set_location_assignment PIN_AG36  -to HSMC_D[38]
+set_location_assignment PIN_Y24   -to HSMC_D[39]
+set_location_assignment PIN_AB27  -to HSMC_D[40]
+set_location_assignment PIN_AB18  -to HSMC_D[41]
+set_location_assignment PIN_AB24  -to HSMC_D[42]
+set_location_assignment PIN_T8    -to HSMC_D[43]
+set_location_assignment PIN_V27   -to HSMC_D[44]
+set_location_assignment PIN_U1    -to HSMC_D[45]
+set_location_assignment PIN_AG21  -to HSMC_D[46]
+set_location_assignment PIN_T18   -to HSMC_D[47]
+set_location_assignment PIN_T27   -to HSMC_D[48]
+set_location_assignment PIN_T4    -to HSMC_D[49]
+set_location_assignment PIN_AJ2   -to HSMC_D[50]
+set_location_assignment PIN_R2    -to HSMC_D[51]
+set_location_assignment PIN_AB15  -to HSMC_D[52]
+set_location_assignment PIN_P15   -to HSMC_D[53]
+set_location_assignment PIN_Y18   -to HSMC_D[54]
+set_location_assignment PIN_P4    -to HSMC_D[55]
+set_location_assignment PIN_T24   -to HSMC_D[56]
+set_location_assignment PIN_N2    -to HSMC_D[57]
+set_location_assignment PIN_W1    -to HSMC_D[58]
+set_location_assignment PIN_L1    -to HSMC_D[59]
+set_location_assignment PIN_P24   -to HSMC_D[60]
+set_location_assignment PIN_M4    -to HSMC_D[61]
+set_location_assignment PIN_U2    -to HSMC_D[62]
+set_location_assignment PIN_M8    -to HSMC_D[63]
+set_location_assignment PIN_M27   -to HSMC_D[64]
+set_location_assignment PIN_M15   -to HSMC_D[65]
+set_location_assignment PIN_M24   -to HSMC_D[66]
+set_location_assignment PIN_M18   -to HSMC_D[67]
+set_location_assignment PIN_N1    -to HSMC_D[68]
+set_location_assignment PIN_K15   -to HSMC_D[69]
+set_location_assignment PIN_K27   -to HSMC_D[70]
+set_location_assignment PIN_K18   -to HSMC_D[71]
+set_location_assignment PIN_F37   -to HSMC_D[72]
+set_location_assignment PIN_Y37   -to HSMC_D[73]
+set_location_assignment PIN_AC46  -to HSMC_D[74]
+set_location_assignment PIN_AG40  -to HSMC_D[75]
+set_location_assignment PIN_K24   -to HSMC_D[76]
+
+#============================================================
+# CAM
+#============================================================
+set_instance_assignment -name IO_STANDARD DPHY -to CAM_CLK_p -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD DPHY -to CAM_CLK_n -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD DPHY -to CAM_D_p[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD DPHY -to CAM_D_p[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD DPHY -to CAM_D_n[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD DPHY -to CAM_D_n[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to CAM_GPIO
+set_instance_assignment -name IO_STANDARD "1.2-V" -to CAM_RZQ1 -entity mux_gating_top
+set_location_assignment PIN_BW69 -to CAM_CLK_p
+set_location_assignment PIN_CA69 -to CAM_CLK_n
+set_location_assignment PIN_BR69 -to CAM_D_p[0]
+set_location_assignment PIN_BR71 -to CAM_D_p[1]
+set_location_assignment PIN_BU69 -to CAM_D_n[0]
+set_location_assignment PIN_BU71 -to CAM_D_n[1]
+set_location_assignment PIN_BK112 -to CAM_GPIO
+set_location_assignment PIN_BH69  -to CAM_RZQ1
+
+#============================================================
+# HPS
+#============================================================
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_CLK_25 -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_ENET_MDC -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_ENET_MDIO -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_ENET_RX_CLK -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_ENET_RX_CTL -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_ENET_RX_DATA[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_ENET_RX_DATA[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_ENET_RX_DATA[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_ENET_RX_DATA[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_ENET_TX_CLK -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_ENET_TX_CTL -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_ENET_TX_DATA[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_ENET_TX_DATA[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_ENET_TX_DATA[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_ENET_TX_DATA[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_GPIO[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_GPIO[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_GSENSOR_INT -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_I2C_SCL -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_I2C_SDA -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_KEY -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_LCM_BK -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_LCM_D_C -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_LCM_RST_n -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_LCM_SPIM_CLK -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_LCM_SPIM_MOSI -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_LCM_SPIM_SS -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_LED -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_SD_CLK -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_SD_CMD -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_SD_DATA[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_SD_DATA[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_SD_DATA[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_SD_DATA[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_UART_RX -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_UART_TX -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_USB_CLK -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_USB_DATA[0] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_USB_DATA[1] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_USB_DATA[2] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_USB_DATA[3] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_USB_DATA[4] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_USB_DATA[5] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_USB_DATA[6] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_USB_DATA[7] -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_USB_DIR -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_USB_NXT -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to HPS_USB_STP -entity mux_gating_top
+set_location_assignment PIN_AG123 -to HPS_CLK_25
+set_location_assignment PIN_D124  -to HPS_ENET_MDC
+set_location_assignment PIN_F124  -to HPS_ENET_MDIO
+set_location_assignment PIN_J135  -to HPS_ENET_RX_CLK
+set_location_assignment PIN_AD135 -to HPS_ENET_RX_CTL
+set_location_assignment PIN_K132  -to HPS_ENET_RX_DATA[0]
+set_location_assignment PIN_AG129 -to HPS_ENET_RX_DATA[1]
+set_location_assignment PIN_G134  -to HPS_ENET_RX_DATA[2]
+set_location_assignment PIN_G135  -to HPS_ENET_RX_DATA[3]
+set_location_assignment PIN_P132  -to HPS_ENET_TX_CLK
+set_location_assignment PIN_L135  -to HPS_ENET_TX_CTL
+set_location_assignment PIN_M132  -to HPS_ENET_TX_DATA[0]
+set_location_assignment PIN_AD134 -to HPS_ENET_TX_DATA[1]
+set_location_assignment PIN_J134  -to HPS_ENET_TX_DATA[2]
+set_location_assignment PIN_AG120 -to HPS_ENET_TX_DATA[3]
+set_location_assignment PIN_T127  -to HPS_GPIO[0]
+set_location_assignment PIN_Y132  -to HPS_GPIO[1]
+set_location_assignment PIN_B134  -to HPS_GSENSOR_INT
+set_location_assignment PIN_K127  -to HPS_I2C_SCL
+set_location_assignment PIN_M127  -to HPS_I2C_SDA
+set_location_assignment PIN_K124  -to HPS_KEY
+set_location_assignment PIN_H127  -to HPS_LCM_BK
+set_location_assignment PIN_P124  -to HPS_LCM_D_C
+set_location_assignment PIN_T124 -to HPS_LCM_RST_n
+set_location_assignment PIN_F127  -to HPS_LCM_SPIM_CLK
+set_location_assignment PIN_Y124  -to HPS_LCM_SPIM_MOSI
+set_location_assignment PIN_AB124 -to HPS_LCM_SPIM_SS
+set_location_assignment PIN_Y127  -to HPS_LED
+set_location_assignment PIN_D132  -to HPS_SD_CLK
+set_location_assignment PIN_AB132 -to HPS_SD_CMD
+set_location_assignment PIN_E135  -to HPS_SD_DATA[0]
+set_location_assignment PIN_F132  -to HPS_SD_DATA[1]
+set_location_assignment PIN_AA135 -to HPS_SD_DATA[2]
+set_location_assignment PIN_V127  -to HPS_SD_DATA[3]
+set_location_assignment PIN_AB127 -to HPS_UART_RX
+set_location_assignment PIN_M124  -to HPS_UART_TX
+set_location_assignment PIN_W135  -to HPS_USB_CLK
+set_location_assignment PIN_AK115 -to HPS_USB_DATA[0]
+set_location_assignment PIN_U134  -to HPS_USB_DATA[1]
+set_location_assignment PIN_R134  -to HPS_USB_DATA[2]
+set_location_assignment PIN_AG115 -to HPS_USB_DATA[3]
+set_location_assignment PIN_N135  -to HPS_USB_DATA[4]
+set_location_assignment PIN_AK120 -to HPS_USB_DATA[5]
+set_location_assignment PIN_N134  -to HPS_USB_DATA[6]
+set_location_assignment PIN_T132  -to HPS_USB_DATA[7]
+set_location_assignment PIN_W134  -to HPS_USB_DIR
+set_location_assignment PIN_AL120 -to HPS_USB_NXT
+set_location_assignment PIN_U135  -to HPS_USB_STP
+
+#============================================================
+# IR
+#============================================================
+set_instance_assignment -name IO_STANDARD "1.2-V" -to IRDA_TXD -entity mux_gating_top
+set_instance_assignment -name IO_STANDARD "1.2-V" -to IRDA_RXD -entity mux_gating_top
+set_location_assignment PIN_BK78  -to IRDA_TXD
+set_location_assignment PIN_BH81  -to IRDA_RXD
+
+#============================================================
+# Configuration scheme/pin
+#============================================================
+set_global_assignment -name USE_CONF_DONE SDM_IO16
+set_global_assignment -name USE_HPS_COLD_RESET SDM_IO11
+set_global_assignment -name USE_INIT_DONE SDM_IO13
+set_global_assignment -name STRATIXV_CONFIGURATION_SCHEME "ACTIVE SERIAL X4"
+set_global_assignment -name ACTIVE_SERIAL_CLOCK AS_FREQ_100MHZ
+set_global_assignment -name DEVICE_INITIALIZATION_CLOCK OSC_CLK_1_125MHZ
+
+#============================================================
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+
+#============================================================
+set_global_assignment -name BOARD default
+set_global_assignment -name PWRMGT_VOLTAGE_OUTPUT_FORMAT "LINEAR FORMAT"
+set_global_assignment -name PWRMGT_LINEAR_FORMAT_N "-12"
+set_global_assignment -name ENABLE_SIGNALTAP ON
+set_global_assignment -name USE_SIGNALTAP_FILE output_files/iopll_runtime.stp
+set_global_assignment -name POWER_APPLY_THERMAL_MARGIN ADDITIONAL
+set_global_assignment -name VERILOG_FILE board_management_ip/I2C_WRITE_POINTER.v
+set_global_assignment -name VERILOG_FILE board_management_ip/I2C_WRITE_BYTE.v
+set_global_assignment -name VERILOG_FILE board_management_ip/I2C_READ_DATA.v
+set_global_assignment -name VERILOG_FILE board_management_ip/fan_timer.v
+set_global_assignment -name VERILOG_FILE board_management_ip/CLOCKMEM.v
+set_global_assignment -name VERILOG_FILE board_management_ip/BOARD_MANAGEMENT.v
+set_global_assignment -name VERILOG_FILE board_management_ip/auto_fan.v
+set_global_assignment -name VERILOG_FILE mux_gating_top.v
+set_global_assignment -name SDC_FILE mux_gating_top.sdc
+set_global_assignment -name IP_FILE ip/reset_release/reset_release.ip
+set_global_assignment -name IP_FILE ip/system/system_intel_niosv_g_0.ip
+set_global_assignment -name IP_FILE ip/system/system_intel_onchip_memory_0.ip
+set_global_assignment -name IP_FILE ip/system/timer.ip
+set_global_assignment -name IP_FILE ip/system/clock_in.ip
+set_global_assignment -name IP_FILE ip/system/jtag_uart.ip
+set_global_assignment -name IP_FILE ip/system/sysid_qsys.ip
+set_global_assignment -name IP_FILE ip/system/board_info_pio.ip
+set_global_assignment -name QSYS_FILE mux_gating_control_system.qsys
+set_global_assignment -name IP_FILE ip/system/system_reset_bridge_0.ip
+set_global_assignment -name IP_FILE ip/system/system_pio_0.ip
+set_global_assignment -name IP_FILE ip/system/system_pio_1.ip
+set_global_assignment -name IP_FILE ip/system/system_pio_2.ip
+set_global_assignment -name SIGNALTAP_FILE i2c.stp
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/hvio_master.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/nios_iopll_bridge.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/mux_gating_switch_controller.sv
+set_global_assignment -name IP_FILE ip/system/system_nios_iopll_bridge_0.ip
+set_global_assignment -name IP_FILE ip/target_iopll/target_iopll.ip
+set_global_assignment -name IP_FILE ip/mux_clock_control/mux_clock_control.ip
+set_global_assignment -name IP_FILE ip/mux_gating_gate_50/mux_gating_gate_50.ip
+set_global_assignment -name IP_FILE ip/mux_gating_gate_10/mux_gating_gate_10.ip
+set_global_assignment -name IP_FILE ip/mux_gating_control_system/mux_gating_control_system_pio_mux_sel.ip
+set_global_assignment -name SIGNALTAP_FILE output_files/iopll_runtime.stp
+set_global_assignment -name IP_FILE ip/system/system_pio_gpio2_trigger.ip

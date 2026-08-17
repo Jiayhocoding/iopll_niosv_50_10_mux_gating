@@ -1,0 +1,38 @@
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name IP_TOOL_NAME "QsysPrimePro"
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name IP_TOOL_VERSION "26.1"
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name IP_TOOL_VENDOR_NAME "jiayao"
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name IP_TOP_LEVEL_COMPONENT_NAME "nios_iopll_bridge"
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name PRE_COMPILED_MODULE "ON"
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name OCS_IP_FILE [file join $::quartus(qip_path) "../system_nios_iopll_bridge_0.ip"]
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name OCS_IP_TYPE "nios_iopll_bridge"
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name OCS_IP_VERSION "1.0"
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name OCS_IP_HASH "mcwfvji"
+set_global_assignment -library "system_nios_iopll_bridge_0" -name SOPCINFO_FILE [file join $::quartus(qip_path) "system_nios_iopll_bridge_0.sopcinfo"]
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name SLD_INFO "QSYS_NAME system_nios_iopll_bridge_0 HAS_SOPCINFO 1 GENERATION_ID 0"
+set_global_assignment -library "system_nios_iopll_bridge_0" -name MISC_FILE [file join $::quartus(qip_path) "system_nios_iopll_bridge_0.cmp"]
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name IP_TARGETED_DEVICE_FAMILY "Agilex 5"
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name IP_GENERATED_DEVICE_FAMILY "{Agilex 5}"
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name IP_QSYS_MODE "STANDALONE"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "system_nios_iopll_bridge_0" -name MISC_FILE [file join $::quartus(qip_path) "../system_nios_iopll_bridge_0.ip"]
+
+set_global_assignment -entity "nios_iopll_bridge" -library "nios_iopll_bridge_10" -name IP_COMPONENT_NAME "bmlvc19pb3BsbF9icmlkZ2U="
+set_global_assignment -entity "nios_iopll_bridge" -library "nios_iopll_bridge_10" -name IP_COMPONENT_DISPLAY_NAME "TmlvcyBJT1BMTCBCcmlkZ2U="
+set_global_assignment -entity "nios_iopll_bridge" -library "nios_iopll_bridge_10" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "nios_iopll_bridge" -library "nios_iopll_bridge_10" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "nios_iopll_bridge" -library "nios_iopll_bridge_10" -name IP_COMPONENT_AUTHOR "amlheWFv"
+set_global_assignment -entity "nios_iopll_bridge" -library "nios_iopll_bridge_10" -name IP_COMPONENT_VERSION "MS4w"
+set_global_assignment -entity "nios_iopll_bridge" -library "nios_iopll_bridge_10" -name IP_COMPONENT_DESCRIPTION "QXZhbG9uLU1NIGJyaWRnZSBmb3IgTmlvcyBWIGNvbnRyb2wgb2YgQWdpbGV4IDUgSU9QTEwgSFZJTyByZWNvbmZpZ3VyYXRpb24u"
+set_global_assignment -entity "nios_iopll_bridge" -library "nios_iopll_bridge_10" -name IP_COMPONENT_GROUP "Q3VzdG9tIEluc3RydWN0aW9uIE1vZHVsZXM="
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name IP_COMPONENT_NAME "c3lzdGVtX25pb3NfaW9wbGxfYnJpZGdlXzA="
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name IP_COMPONENT_DISPLAY_NAME "c3lzdGVt"
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name IP_COMPONENT_AUTHOR "amlheWFv"
+set_global_assignment -entity "system_nios_iopll_bridge_0" -library "system_nios_iopll_bridge_0" -name IP_COMPONENT_VERSION "MS4w"
+
+
+set_global_assignment -library "nios_iopll_bridge_10" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "nios_iopll_bridge_10/synth/nios_iopll_bridge.sv"]
+set_global_assignment -library "system_nios_iopll_bridge_0" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/system_nios_iopll_bridge_0.v"]
+

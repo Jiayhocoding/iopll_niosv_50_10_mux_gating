@@ -1,0 +1,45 @@
+set_global_assignment -entity "timer" -library "timer" -name IP_TOOL_NAME "QsysPrimePro"
+set_global_assignment -entity "timer" -library "timer" -name IP_TOOL_VERSION "26.1"
+set_global_assignment -entity "timer" -library "timer" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "timer" -library "timer" -name IP_TOOL_VENDOR_NAME "Altera"
+set_global_assignment -entity "timer" -library "timer" -name IP_TOP_LEVEL_COMPONENT_NAME "altera_avalon_timer"
+set_global_assignment -entity "timer" -library "timer" -name PRE_COMPILED_MODULE "ON"
+set_global_assignment -entity "timer" -library "timer" -name OCS_IP_FILE [file join $::quartus(qip_path) "../timer.ip"]
+set_global_assignment -entity "timer" -library "timer" -name OCS_IP_TYPE "altera_avalon_timer"
+set_global_assignment -entity "timer" -library "timer" -name OCS_IP_VERSION "19.3.5"
+set_global_assignment -entity "timer" -library "timer" -name OCS_IP_HASH "2qdnrka"
+set_global_assignment -library "timer" -name SOPCINFO_FILE [file join $::quartus(qip_path) "timer.sopcinfo"]
+set_global_assignment -entity "timer" -library "timer" -name SLD_INFO "QSYS_NAME timer HAS_SOPCINFO 1 GENERATION_ID 0"
+set_global_assignment -library "timer" -name MISC_FILE [file join $::quartus(qip_path) "timer.cmp"]
+set_global_assignment -library "timer" -name SLD_FILE [file join $::quartus(qip_path) "timer.regmap"]
+set_global_assignment -entity "timer" -library "timer" -name IP_TARGETED_DEVICE_FAMILY "Agilex 5"
+set_global_assignment -entity "timer" -library "timer" -name IP_GENERATED_DEVICE_FAMILY "{Agilex 5}"
+set_global_assignment -entity "timer" -library "timer" -name IP_QSYS_MODE "STANDALONE"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "timer" -name MISC_FILE [file join $::quartus(qip_path) "../timer.ip"]
+
+set_global_assignment -entity "timer_altera_avalon_timer_1935_2qdnrka" -library "altera_avalon_timer_1935" -name IP_COMPONENT_NAME "dGltZXJfYWx0ZXJhX2F2YWxvbl90aW1lcl8xOTM1XzJxZG5ya2E="
+set_global_assignment -entity "timer_altera_avalon_timer_1935_2qdnrka" -library "altera_avalon_timer_1935" -name IP_COMPONENT_DISPLAY_NAME "SW50ZXJ2YWwgVGltZXIgSVA="
+set_global_assignment -entity "timer_altera_avalon_timer_1935_2qdnrka" -library "altera_avalon_timer_1935" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "timer_altera_avalon_timer_1935_2qdnrka" -library "altera_avalon_timer_1935" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "timer_altera_avalon_timer_1935_2qdnrka" -library "altera_avalon_timer_1935" -name IP_COMPONENT_AUTHOR "QWx0ZXJh"
+set_global_assignment -entity "timer_altera_avalon_timer_1935_2qdnrka" -library "altera_avalon_timer_1935" -name IP_COMPONENT_VERSION "MTkuMy41"
+set_global_assignment -entity "timer_altera_avalon_timer_1935_2qdnrka" -library "altera_avalon_timer_1935" -name IP_COMPONENT_GROUP "UHJvY2Vzc29ycyBhbmQgUGVyaXBoZXJhbHMvUGVyaXBoZXJhbHM="
+set_global_assignment -entity "timer_altera_avalon_timer_1935_2qdnrka" -library "altera_avalon_timer_1935" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzEzMC9jdXJyZW50L2ludGVydmFsLXRpbWVyLWNvcmUuaHRtbA=="
+set_global_assignment -entity "timer_altera_avalon_timer_1935_2qdnrka" -library "altera_avalon_timer_1935" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzEzMC9jdXJyZW50L2ludGVydmFsLXRpbWVyLWNvcmUtcmV2aXNpb24taGlzdG9yeS5odG1s"
+set_global_assignment -entity "timer" -library "timer" -name IP_COMPONENT_NAME "dGltZXI="
+set_global_assignment -entity "timer" -library "timer" -name IP_COMPONENT_DISPLAY_NAME "c3lzdGVt"
+set_global_assignment -entity "timer" -library "timer" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "timer" -library "timer" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "timer" -library "timer" -name IP_COMPONENT_AUTHOR "QWx0ZXJh"
+set_global_assignment -entity "timer" -library "timer" -name IP_COMPONENT_VERSION "MS4w"
+
+
+set_global_assignment -library "altera_avalon_timer_1935" -name VERILOG_FILE [file join $::quartus(qip_path) "altera_avalon_timer_1935/synth/timer_altera_avalon_timer_1935_2qdnrka.v"]
+set_global_assignment -library "timer" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/timer.v"]
+
+
+set_global_assignment -entity "timer_altera_avalon_timer_1935_2qdnrka" -library "altera_avalon_timer_1935" -name IP_TOOL_NAME "altera_avalon_timer"
+set_global_assignment -entity "timer_altera_avalon_timer_1935_2qdnrka" -library "altera_avalon_timer_1935" -name IP_TOOL_VERSION "19.3.5"
+set_global_assignment -entity "timer_altera_avalon_timer_1935_2qdnrka" -library "altera_avalon_timer_1935" -name IP_TOOL_ENV "QsysPrimePro"
+

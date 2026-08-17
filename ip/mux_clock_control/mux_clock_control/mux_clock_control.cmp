@@ -1,0 +1,9 @@
+	component mux_clock_control is
+		port (
+			inclk0x   : in  std_logic := 'X'; -- clk
+			inclk1x   : in  std_logic := 'X'; -- clk
+			clkselect : in  std_logic := 'X'; -- export
+			outclk    : out std_logic         -- clk
+		);
+	end component mux_clock_control;
+

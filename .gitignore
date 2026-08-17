@@ -1,0 +1,71 @@
+# Quartus compiler databases and generated output
+/db/
+/dni/
+/qdb/
+**/qdb/
+/output_files/
+/incremental_db/
+/tmp-clearbox/
+/system/
+/mux_gating_control_system/
+/.qsys_edit/
+**/.qsys_edit/
+/ip_upgrade_port_diff_reports/
+/IpUpgradeLog.xml
+/golden_top.htm
+
+# Local backups and generated demo binaries
+/clean_build_backup_*/
+/demo_batch/*.sof
+/demo_batch/*.elf
+*.bak
+*.BAK.*
+*.before_*
+*.pre_*.bak
+*~
+/system.qsys.bak_before_fix
+
+# Accidental empty scratch files
+/0-
+/1。
+/=
+/=10
+/Avalon-MM
+/nios_iopll_bridge
+
+# Quartus transient files and reports
+*.qws
+*.rpt
+*.summary
+*.done
+*.pin
+*.sld
+*.sof
+*.pof
+*.jic
+*.cdf
+*.rec
+*.log
+*.save
+
+# Eclipse / Ashling workspace state
+/software/.metadata/
+
+# Nios V generated BSP and application builds
+/software/nios_bsp/
+/software/*/build*/
+*.elf
+*.objdump
+
+# Simulation products
+/simulation/build/
+*.vcd
+*.wlf
+transcript
+work/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
