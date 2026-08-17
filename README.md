@@ -127,6 +127,12 @@ instrumentation is required for measured savings.
 
 ## Build and verification
 
+`software/nios_mux_gating_switch` is the only application for this experiment.
+It writes only the requested-frequency PIO and never performs IOPLL runtime
+reconfiguration, reset, or recalibration. Generate/update `software/nios_bsp`
+locally from the Platform Designer system before building the application; the
+generated BSP and build products are intentionally excluded from Git.
+
 ```bash
 quartus_sh --flow compile mux_gating_top
 ./simulation/run_dual_clock_mux_gating.sh
