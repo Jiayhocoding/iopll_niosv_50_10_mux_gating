@@ -1,353 +1,364 @@
-# Agilex 5 HVIO IOPLL Dual-Clock MUX + Root Gating
+# Agilex 5 HVIO IOPLL 50 MHz ↔ 10 MHz MUX + Root Gating
 
-**Nios V controlled 50 MHz ↔ 10 MHz clock switching using two continuously running HVIO IOPLL outputs, Agilex 5 root clock gates, and a glitch-free Clock Control MUX.**
+This repository implements **runtime switching between two continuously generated IOPLL clocks** using dedicated clock-gating resources followed by a glitch-free Clock Control MUX.
 
-> **Design principle:** software chooses the target frequency; RTL owns the timing.  
-> **Switch sequence:** enable target path → prepare → command MUX → guard → disable old path.
+> **Current design:** HVIO IOPLL generates 50 MHz and 10 MHz continuously → target path is enabled → RTL waits a programmable preparation interval → RTL changes the MUX select → both paths remain enabled for a guard interval → old path is disabled.
 
-This repository is the **MUX + gating experiment**. It does **not** dynamically reconfigure the IOPLL during a normal 50 MHz ↔ 10 MHz transition.
-
----
-
-## Experiment at a glance
-
-| Item | This design |
-|---|---|
-| FPGA clock source | HVIO IOPLL |
-| Raw outputs | 50 MHz (`C0=64`) and 10 MHz (`C1=320`) |
-| VCO | 3.2 GHz (`M=64`, `N=1`) |
-| Clock switching | 2:1 glitch-free `intelclkctrl` MUX |
-| Clock gating | Two root-level `intelclkctrl` gates |
-| Software control | One requested-frequency bit from Nios V |
-| Timing owner | 50 MHz RTL FSM |
-| Default prepare interval | `4 × 20 ns = 80 ns` |
-| Default switch guard | `50 × 20 ns = 1 µs` |
-| PLL reconfiguration during switch | **None** |
-| Primary measurement | `GPIO_D[2]` MUX select vs. `GPIO_D[0]` output |
-
-### Experimental question
-
-Can the unselected downstream clock path be gated while preserving a controlled, glitch-free clock-source transition and keeping the IOPLL running continuously?
-
-The experiment separates three effects that are easy to confuse:
-
-1. **Raw clock generation** — both IOPLL outputs keep running.
-2. **Clock-path availability** — root gates decide whether each raw clock reaches the MUX.
-3. **Output selection** — the glitch-free MUX decides which available source reaches the output.
+The normal 50 MHz ↔ 10 MHz transition **does not reconfigure the IOPLL**. The IOPLL register interface is tied idle in `mux_gating_top.v`; M/N/C settings are not rewritten during a switch.
 
 ---
 
-## 1. System architecture
-
-### Clock plane + control plane
+## 1. What the project actually does
 
 ```mermaid
 flowchart LR
-    subgraph CP["Control plane"]
-        SW["Nios V software<br/>requested frequency<br/>0 = 50 MHz / 1 = 10 MHz"]
-        FSM["mux_gating_switch_controller<br/>50 MHz RTL FSM"]
-        SW --> FSM
-    end
+    SW["Nios V software<br/>writes request bit"] --> REQ["requested_10mhz"]
+    REQ --> FSM["mux_gating_switch_controller<br/>50 MHz control FSM"]
 
-    subgraph KP["Clock plane"]
-        REF["50 MHz reference"] --> PLL["HVIO IOPLL<br/>M=64, N=1<br/>VCO=3.2 GHz"]
-        PLL -->|"C0=64"| RAW50["raw_clk_50<br/>50 MHz<br/>always running"]
-        PLL -->|"C1=320"| RAW10["raw_clk_10<br/>10 MHz<br/>always running"]
-        RAW50 --> G50["Root Gate 50<br/>intelclkctrl"]
-        RAW10 --> G10["Root Gate 10<br/>intelclkctrl"]
-        G50 --> MUX["Glitch-free 2:1 MUX<br/>intelclkctrl"]
-        G10 --> MUX
-        MUX --> OUT["GPIO_D[0]<br/>final clock output"]
-    end
+    REF["CLOCK0_50<br/>50 MHz reference"] --> PLL["target_iopll"]
+    PLL -->|"outclk_0 = 50 MHz"| G50["mux_gating_gate_50"]
+    PLL -->|"outclk_1 = 10 MHz"| G10["mux_gating_gate_10"]
 
-    FSM -->|"gate50_en"| G50
-    FSM -->|"gate10_en"| G10
-    FSM -->|"mux_select"| MUX
+    FSM -->|"gate_50_enable"| G50
+    FSM -->|"gate_10_enable"| G10
 
-    PLL -. "locked" .-> LOCK["GPIO_D[1]"]
-    FSM -. "MUX select" .-> SEL["GPIO_D[2]"]
-    G50 -. "gated 50 MHz" .-> D3["GPIO_D[3]"]
-    G10 -. "gated 10 MHz" .-> D4["GPIO_D[4]"]
-    FSM -. "prepare marker" .-> D5["GPIO_D[5]"]
+    G50 --> MUX["mux_clock_control<br/>glitch-free 2:1 MUX"]
+    G10 --> MUX
+    FSM -->|"mux_select_10mhz"| MUX
+
+    MUX --> OUT["GPIO_D[0]<br/>final clock output"]
 ```
 
-### The most important distinction
+### Important distinction
 
-```mermaid
-flowchart LR
-    RAW["IOPLL raw output<br/>still toggling"] --> GATE{"Root gate"}
-    GATE -->|"disabled"| STOP["Downstream path blocked"]
-    GATE -->|"enabled"| PASS["Clock reaches MUX input"]
+The IOPLL outputs are **raw clocks that continue running**. The two Clock Control gate IPs only control whether each raw clock propagates into the downstream MUX input.
+
+```text
+IOPLL outclk_0 (50 MHz) ──> gate 50 ──┐
+                                      ├─> glitch-free MUX ──> output
+IOPLL outclk_1 (10 MHz) ──> gate 10 ──┘
 ```
 
-**Gate disabled ≠ IOPLL clock stopped.** The gate only blocks propagation into the downstream clock network. C0, C1, and the VCO continue running.
+So:
 
-### Design invariants
+- gate OFF does **not** stop the IOPLL,
+- gate ON does **not** start or relock the IOPLL,
+- normal frequency switching does **not** perform PLL reset/reconfiguration/recalibration.
 
-These rules define the intended behavior of every valid transition:
-
-- both raw IOPLL outputs continue running,
-- the target gated path is enabled **before** the MUX command,
-- both gated sources are available at the MUX command,
-- the selected source is never intentionally gated off before switchover,
-- the old gated path is disabled only after the full switch guard,
-- IOPLL lock is expected to remain asserted,
-- no PLL reset, C-counter update, recalibration, or relock is part of a normal switch.
+The configured IOPLL IP exposes a 50 MHz `outclk_0` and a 10 MHz `outclk_1` from a 50 MHz reference clock.
 
 ---
 
-## 2. Switching sequence
+## 2. Control ownership
 
-A frequency change is a **make-before-break** operation at the gated clock-path level.
+Nios V does **not** directly toggle the gate enables or bit-bang the MUX timing.
+
+The software only writes one request bit:
+
+```c
+request_frequency(0u); // request 50 MHz
+request_frequency(1u); // request 10 MHz
+```
+
+The current application waits one second at each requested frequency. All short timing intervals are implemented by RTL in `mux_gating_switch_controller.sv`.
 
 ```mermaid
 flowchart LR
-    A["1. Request target"] --> B["2. Enable target gate"]
-    B --> C["3. Wait PREPARE_CYCLES"]
-    C --> D["4. Command MUX"]
-    D --> E["5. Keep both gates ON<br/>SWITCH_GUARD_CYCLES"]
-    E --> F["6. Disable old gate"]
-    F --> G["7. Run target frequency"]
+    NIOS["Nios V"] -->|"0 / 1 request"| PIO["requested_10mhz"]
+    PIO --> FSM["RTL FSM"]
+    FSM --> GATES["gate enables"]
+    FSM --> SEL["MUX select"]
 ```
-
-### Forward and reverse transitions
-
-| Phase | 50 → 10 MHz | 10 → 50 MHz |
-|---|---|---|
-| Initial | gate50 ON, gate10 OFF, MUX=50 | gate50 OFF, gate10 ON, MUX=10 |
-| Wake target path | enable gate10 | enable gate50 |
-| Prepare | wait `PREPARE_CYCLES` | wait `PREPARE_CYCLES` |
-| MUX command | `mux_select=1` | `mux_select=0` |
-| Guard | both gates ON | both gates ON |
-| Cleanup | disable gate50 | disable gate10 |
-| Final | gate50 OFF, gate10 ON, MUX=10 | gate50 ON, gate10 OFF, MUX=50 |
-
-### Why the guard exists
-
-The Clock Control MUX has no switchover-complete output. The controller therefore cannot observe the exact internal completion instant. It keeps both clock paths available for a conservative fixed interval, then disables the old gated path.
-
-The guard is **not** the measured switching latency. Actual output switchover is determined from `GPIO_D[0]`.
 
 ---
 
-## 3. RTL state machine
+## 3. Actual RTL state machine
+
+The current controller has **eight states**:
+
+```text
+RUN_50
+ENABLE_10
+WAIT_PREPARE_10
+WAIT_SWITCH_10
+RUN_10
+ENABLE_50
+WAIT_PREPARE_50
+WAIT_SWITCH_50
+```
+
+There are **no `MUX_TO_10` or `MUX_TO_50` states** in the current RTL. The MUX select changes inside `WAIT_PREPARE_*` when the preparation counter completes, or directly in `ENABLE_*` when `PREPARE_CYCLES == 0`.
 
 ```mermaid
 stateDiagram-v2
     [*] --> RUN_50
 
-    RUN_50 --> ENABLE_10: request = 10 MHz
-    ENABLE_10 --> WAIT_PREPARE_10: gate10 = ON
-    WAIT_PREPARE_10 --> MUX_TO_10: prepare complete
-    MUX_TO_10 --> WAIT_SWITCH_10: mux_select = 1
-    WAIT_SWITCH_10 --> RUN_10: guard complete / gate50 = OFF
+    RUN_50 --> ENABLE_10: requested_10mhz = 1
+    ENABLE_10 --> WAIT_PREPARE_10: gate10 ON / marker ON
+    WAIT_PREPARE_10 --> WAIT_SWITCH_10: prepare done / MUX selects 10 MHz
+    WAIT_SWITCH_10 --> RUN_10: guard done / gate50 OFF
 
-    RUN_10 --> ENABLE_50: request = 50 MHz
-    ENABLE_50 --> WAIT_PREPARE_50: gate50 = ON
-    WAIT_PREPARE_50 --> MUX_TO_50: prepare complete
-    MUX_TO_50 --> WAIT_SWITCH_50: mux_select = 0
-    WAIT_SWITCH_50 --> RUN_50: guard complete / gate10 = OFF
+    RUN_10 --> ENABLE_50: requested_10mhz = 0
+    ENABLE_50 --> WAIT_PREPARE_50: gate50 ON / marker ON
+    WAIT_PREPARE_50 --> WAIT_SWITCH_50: prepare done / MUX selects 50 MHz
+    WAIT_SWITCH_50 --> RUN_50: guard done / gate10 OFF
 ```
 
-Equivalent RTL sequence:
+### `PREPARE_CYCLES == 0`
 
-```text
-RUN_50 -> ENABLE_10 -> WAIT_PREPARE_10 -> MUX_TO_10
-       -> WAIT_SWITCH_10 -> RUN_10
+This is a special baseline case implemented in the RTL:
 
-RUN_10 -> ENABLE_50 -> WAIT_PREPARE_50 -> MUX_TO_50
-       -> WAIT_SWITCH_50 -> RUN_50
-```
-
-Nios V writes only the requested-frequency bit. It does **not** bit-bang gate enables or MUX timing.
+- target gate enable and MUX command occur on the **same 50 MHz control edge**,
+- the old gate still remains enabled through `SWITCH_GUARD_CYCLES`.
 
 ---
 
-## 4. Timing model
+## 4. Exact 50 MHz → 10 MHz sequence
 
-The controller uses a 50 MHz clock:
-
-```text
-T_control = 1 / 50 MHz = 20 ns
-```
-
-Default parameters:
+With the default parameters:
 
 ```systemverilog
 PREPARE_CYCLES      = 4
 SWITCH_GUARD_CYCLES = 50
 ```
 
-Therefore:
+and a 50 MHz controller clock:
 
 ```text
-T_prepare(default) = 4  × 20 ns = 80 ns
-T_guard(default)   = 50 × 20 ns = 1 µs
+1 control cycle = 20 ns
+prepare interval = 4 × 20 ns = 80 ns
+guard interval   = 50 × 20 ns = 1 µs
 ```
 
-The 1 µs guard equals ten periods of the slowest 10 MHz source.
-
-### 50 MHz → 10 MHz timing concept
-
-```text
-Time  ------------------------------------------------------------------------>
-
-request_10       0 _________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-
-gate10_en        0 _________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-                          |<-- 80 ns -->|
-
-mux_select       0 _____________________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-                                             ^
-                                             | MUX command
-                                             |<---- 1 µs guard ---->|
-
-gate50_en        1 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|___
-
-GPIO_D[0]          50 MHz ---------[ actual switchover ]---------- 10 MHz
-```
-
-The old 50 MHz clock continues driving the output during preparation. The MUX command occurs only after the target 10 MHz gated path has been made available.
-
-`PREPARE_CYCLES=0` is intentionally supported as a sweep baseline: target gate enable and MUX command occur on the same control edge, while the old path still remains enabled through the guard.
-
----
-
-## 5. Hardware measurement: MUX + gating experiment
-
-This is a **gating experiment**, so the measurement model separates two questions:
-
-1. **When does the output MUX switch?** — observe `GPIO_D[2]` against `GPIO_D[0]`.
-2. **When are the gated clock paths enabled/disabled?** — observe `GPIO_D[3]`, `GPIO_D[4]`, and `GPIO_D[5]`.
-
-### Primary two-channel trigger view
-
-For the externally visible output transition, use the signal that actually commands the MUX:
-
-> **Trigger reference = `GPIO_D[2]` (`mux_select_10mhz`)**
-
-Do not use `prepare_marker` as the primary output-switch trigger. The marker answers a different question: **when did target-path preparation begin?**
+The forward transition is:
 
 ```mermaid
 flowchart LR
-    TRIG["CH1: GPIO_D[2]<br/>MUX select"] -->|"rising edge"| FWD["50 → 10 command"]
-    TRIG -->|"falling edge"| REV["10 → 50 command"]
-    FWD --> OBS["CH2: GPIO_D[0]<br/>observe final clock output"]
-    REV --> OBS
+    A["RUN_50<br/>gate50=1 gate10=0<br/>MUX=50"] -->|"request 10 MHz"| B["ENABLE_10"]
+    B --> C["gate10=1<br/>prepare_marker=1"]
+    C -->|"wait 4 cycles = 80 ns"| D["mux_select_10mhz=1<br/>transition_marker=1"]
+    D -->|"both gates ON<br/>wait 50 cycles = 1 µs"| E["gate50=0"]
+    E --> F["RUN_10"]
 ```
 
-- `GPIO_D[2] = 0` → MUX commands 50 MHz.
-- `GPIO_D[2] = 1` → MUX commands 10 MHz.
-- Rising edge on D2 → 50 MHz → 10 MHz command.
-- Falling edge on D2 → 10 MHz → 50 MHz command.
+The reverse 10 MHz → 50 MHz sequence is symmetric:
 
-### Gating validation signals
+```text
+RUN_10
+  -> enable gate50
+  -> wait PREPARE_CYCLES
+  -> mux_select_10mhz = 0
+  -> keep both gates enabled for SWITCH_GUARD_CYCLES
+  -> disable gate10
+  -> RUN_50
+```
 
-| GPIO | Pin | Signal | What it proves |
-|---|---|---|---|
-| `GPIO_D[0]` | `PIN_BK31` | final output | Actual selected output clock |
-| `GPIO_D[1]` | `PIN_BE43` | `target_iopll_locked` | PLL remains locked |
-| `GPIO_D[2]` | `PIN_BF29` | `mux_select_10mhz` | Actual MUX command / trigger |
-| `GPIO_D[3]` | `PIN_BF40` | gated 50 MHz | 50 MHz downstream path availability |
-| `GPIO_D[4]` | `PIN_BK28` | gated 10 MHz | 10 MHz downstream path availability |
-| `GPIO_D[5]` | `PIN_BM31` | preparation marker | Target-gate preparation interval |
-
-For a complete **gating** validation, confirm all of the following:
-
-- the target gated clock is already present **before** the `GPIO_D[2]` MUX-select edge,
-- both gated paths remain available during the MUX transition,
-- the old gated clock is removed only **after** the switch guard,
-- IOPLL lock remains asserted throughout.
-
-### Hardware captures from the gating build: 50 MHz → 10 MHz
-
-The three oscilloscope captures below show the same forward transition at progressively shorter time scales. Keeping them as separate files preserves the original detail and makes each acquisition easier to interpret on GitHub and on mobile.
-
-#### 1. Overview — 50 ms/div
-
-![50 MHz to 10 MHz gating experiment overview](doc/img/IMG_0158.JPG)
-
-This long-window capture shows the overall operating-region change from the faster 50 MHz output region to the slower 10 MHz output region.
-
-#### 2. Transition zoom — 2 ms/div
-
-![50 MHz to 10 MHz gating experiment transition zoom](doc/img/IMG_0160.JPG)
-
-This view zooms in around the `GPIO_D[2]` MUX-select transition so the output behavior around the command boundary is easier to see.
-
-#### 3. Boundary close-up — 500 µs/div
-
-![50 MHz to 10 MHz gating experiment boundary close-up](doc/img/IMG_0163.JPG)
-
-This is the closest view in the current capture set and is intended to inspect the immediate command/output boundary before moving to a true ns-scale pulse-quality acquisition.
-
-**Signals shown in all three captures**
-
-- **CH1 / yellow:** `GPIO_D[0]` — final post-gating, post-MUX clock output.
-- **CH2 / blue:** `GPIO_D[2]` — `mux_select_10mhz`, the external MUX-command reference.
-- The CH2 rising edge corresponds to the 50 MHz → 10 MHz MUX command.
-
-These captures are hardware evidence of the **output transition produced by the gating architecture**, but they do **not by themselves directly show the gate-enable/disable events**, because `GPIO_D[3]`, `GPIO_D[4]`, and `GPIO_D[5]` are not displayed in this two-channel acquisition.
-
-Therefore, do not interpret these images alone as proof that the target gate turned on 80 ns before the MUX command or that the old gate turned off exactly after the 1 µs guard. Those gating-sequence claims are verified digitally by the RTL/testbench and require the additional gating GPIO channels for direct board-level confirmation.
-
-At the displayed millisecond-scale timebases, the nominal 50 MHz and 10 MHz clock waveforms are heavily undersampled by the oscilloscope display. The yellow traces should therefore not be interpreted as the actual square-wave shape or used directly for nanosecond-level pulse-width claims.
-
-> **Important:** the on-screen cursor `ΔX` values in these captures are not automatically `T_switch`, `T_gap`, `T_prepare`, or `T_enable`. Each metric requires the cursors to be placed on the exact events defined below using a suitable high-sample-rate / short-timebase acquisition.
+This is a **make-before-break clock-path sequence**: the target gated path is made available before the old path is removed.
 
 ---
 
-## 6. Measurement definitions
+## 5. Marker signals — what they really mean
 
-```mermaid
-flowchart LR
-    P["prepare_marker rises<br/>target gate requested ON"] -->|"T_prepare"| S["GPIO_D[2]<br/>MUX command"]
-    S -->|"T_switch"| N["first valid new-frequency output edge"]
-    O["last valid old-frequency output edge"] -->|"T_gap"| N
+This section is important because the marker names can be misleading.
+
+### `prepare_marker`
+
+`prepare_marker` rises on the same control edge that enables the target gate, but it **does not fall at the MUX command**.
+
+It remains HIGH through:
+
+```text
+target gate enable
+      ↓
+PREPARE_CYCLES
+      ↓
+MUX command
+      ↓
+SWITCH_GUARD_CYCLES
+      ↓
+old gate disable
+      ↓
+prepare_marker LOW
 ```
 
-| Metric | Definition | What it tells us |
+Therefore `prepare_marker` is better interpreted as a **transition-active window starting at target-path enable**, not as a pulse whose width equals only the 80 ns preparation interval.
+
+### `transition_marker`
+
+`transition_marker` rises when the RTL commands the MUX selection change and remains HIGH through the switch guard. It is currently an internal controller signal and is **not exported on the GPIO mapping in `mux_gating_top.v`**.
+
+### `mux_select_10mhz`
+
+This is the actual selection command sent to `mux_clock_control`:
+
+```text
+0 -> gated 50 MHz input selected
+1 -> gated 10 MHz input selected
+```
+
+For correlating the final output with the **MUX command**, this is the relevant signal.
+
+---
+
+## 6. Current GPIO debug exports
+
+The current top-level RTL exports these signals:
+
+| GPIO | Current RTL signal | Meaning |
 |---|---|---|
-| `T_prepare` | D2 MUX-command edge − prepare-marker rise | Intentional target-path preparation |
-| `T_enable` | First valid target gated-clock edge − prepare-marker rise | Actual gated-path enable behavior |
-| `T_switch` | First valid new-frequency output edge − D2 edge | Actual MUX/output response |
-| `T_gap` | First valid new-frequency edge − last valid old-frequency edge | Visible boundary interruption |
-| `T_HIGH_min` | Minimum HIGH pulse width near boundary | Runt/truncated HIGH check |
-| `T_LOW_min` | Minimum LOW pulse width near boundary | Runt/truncated LOW check |
-| `T_total` | Request → completed FSM state | Controller-level latency |
+| `GPIO_D[0]` | `mux_gating_clock_out` | Final clock after gates + MUX |
+| `GPIO_D[1]` | `target_iopll_locked` | IOPLL hardware lock status |
+| `GPIO_D[2]` | `mux_select_10mhz` | Actual MUX select command |
+| `GPIO_D[3]` | `gated_clk_50` | 50 MHz path after its clock gate |
+| `GPIO_D[4]` | `gated_clk_10` | 10 MHz path after its clock gate |
+| `GPIO_D[5]` | `prepare_marker` | Transition-active marker beginning at target-gate enable |
 
-For nonzero settings:
-
-```text
-T_prepare = PREPARE_CYCLES × 20 ns
-```
-
-`T_total` and `T_gap` are deliberately different. Preparation overlaps the still-running old output, so a long preparation interval does not imply an equally long visible output gap.
-
-Also inspect for **runt pulses, truncated pulses, stretched cycles, double edges, and missing edges**.
+Physical package-pin assignments should be read from `mux_gating_top.qsf`; they are intentionally not duplicated here so this README does not become stale when pin assignments change.
 
 ---
 
-## 7. Clock resources
+## 7. How to measure the experiment
 
-Quartus Pro 26.1 Clock Control FPGA IP (`intelclkctrl` 2.0.1) is used for both gating and clock selection.
+There are two different questions, and they should not be mixed together.
 
-Each one-input clock gate is configured with:
+### A. Output switching behavior
+
+Use:
 
 ```text
-ENABLE=true
-ENABLE_TYPE=1
-ENABLE_REGISTER_TYPE=1
+GPIO_D[2] = MUX command
+GPIO_D[0] = final output
 ```
 
-This selects root-level gating with the dedicated negative-latch behavior. The output uses a two-input Clock Control MUX with glitch-free switchover enabled.
+For 50 MHz → 10 MHz, trigger on the rising edge of `GPIO_D[2]` and inspect when `GPIO_D[0]` begins behaving as the 10 MHz selected output.
 
-There is **no `clk & enable` clock path in user RTL**.
+For 10 MHz → 50 MHz, trigger on the falling edge of `GPIO_D[2]`.
 
-The IOPLL register interface is tied idle during this experiment. M/N/C0/C1 stay fixed across normal transitions.
+### B. Gating sequence
+
+To directly verify the gating order, observe:
+
+```text
+GPIO_D[3] = gated 50 MHz path
+GPIO_D[4] = gated 10 MHz path
+GPIO_D[5] = transition-active marker
+GPIO_D[2] = MUX command
+```
+
+The expected forward ordering is:
+
+```text
+gated 10 MHz becomes available
+        ↓
+80 ns preparation interval
+        ↓
+MUX command changes to 10 MHz
+        ↓
+1 µs guard with both paths available
+        ↓
+gated 50 MHz path is removed
+```
+
+The three oscilloscope captures currently stored in this repository show the board-level transition at different time scales. They are useful visual evidence of the observed transition, but a two-channel capture of output + MUX select alone does **not** directly prove target-gate-enable timing or old-gate-disable timing.
 
 ---
 
-## One-sentence model
+## 8. Hardware captures
 
-> **Both IOPLL clocks always run; RTL wakes the target gated path, commands the glitch-free MUX, waits a guard interval, and only then gates off the old downstream path.**
+### Overview
+
+![Hardware capture overview](doc/img/IMG_0158.JPG)
+
+### Transition zoom
+
+![Hardware transition zoom](doc/img/IMG_0160.JPG)
+
+### Boundary close-up
+
+![Hardware boundary close-up](doc/img/IMG_0163.JPG)
+
+At long timebases, a 50 MHz or 10 MHz waveform can be heavily undersampled by the oscilloscope display. These images should therefore not be used alone to make nanosecond-level runt-pulse or minimum-pulse-width claims.
+
+---
+
+## 9. Clock-control IP used by the design
+
+The project contains separate Clock Control IP blocks for:
+
+```text
+ip/mux_gating_gate_50
+ip/mux_gating_gate_10
+ip/mux_clock_control
+```
+
+The gate IP configuration uses Clock Control enable support with:
+
+```text
+ENABLE = true
+ENABLE_TYPE = 1
+ENABLE_REGISTER_TYPE = 1
+```
+
+The two gated outputs then feed the separate two-input Clock Control MUX.
+
+There is no user-RTL implementation of clock gating using a simple expression such as:
+
+```verilog
+assign gated_clk = clk & enable;
+```
+
+---
+
+## 10. IOPLL runtime-reconfiguration interface
+
+The top-level still contains inherited Nios/IOPLL bridge-related signals and Platform Designer ports, but in this project the actual IOPLL Avalon register interface is explicitly held idle:
+
+```verilog
+core_avl_address   = 0
+core_avl_read      = 0
+core_avl_write     = 0
+core_avl_writedata = 0
+```
+
+The legacy bridge return signals are also tied to idle values. They **cannot control the normal frequency transition in this implementation**.
+
+This repository should therefore be understood as:
+
+> **pre-generated 50 MHz + 10 MHz clocks, root gating, then glitch-free MUX selection**
+
+—not as an IOPLL dynamic C-counter reconfiguration design.
+
+---
+
+## 11. Key source files
+
+```text
+README.md
+mux_gating_top.v
+rtl/mux_gating_switch_controller.sv
+mux_gating_control_system.qsys
+ip/target_iopll/
+ip/mux_gating_gate_50/
+ip/mux_gating_gate_10/
+ip/mux_clock_control/
+software/nios_mux_gating_switch/main.c
+doc/img/
+```
+
+Recommended reading order:
+
+```text
+README.md
+   ↓
+rtl/mux_gating_switch_controller.sv
+   ↓
+mux_gating_top.v
+   ↓
+software/nios_mux_gating_switch/main.c
+```
+
+---
+
+## 12. One-sentence model
+
+> **Both IOPLL output clocks run continuously; Nios V requests a target frequency, and the RTL enables the target clock path, waits the preparation interval, commands the glitch-free MUX, waits the guard interval, and only then disables the old gated path.**
