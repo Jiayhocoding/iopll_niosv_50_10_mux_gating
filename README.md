@@ -262,7 +262,9 @@ The following oscilloscope capture shows the forward transition at three time sc
 - The CH2 rising edge corresponds to the **50 MHz → 10 MHz MUX command**.
 - The yellow waveform changes from the faster 50 MHz region to the slower 10 MHz region after the command boundary.
 
-> **Important:** the on-screen cursor `ΔX` values in these captures are not automatically treated as `T_switch` or `T_gap`. Those metrics must be measured with the cursors placed on the exact events defined in the next section.
+These captures are primarily **qualitative hardware evidence** of the requested transition. At the displayed millisecond-scale timebases, the nominal 50 MHz and 10 MHz square waves are heavily undersampled by the oscilloscope display, so the yellow trace should not be interpreted as the actual clock waveform shape or used directly for nanosecond-level pulse-width claims.
+
+> **Important:** the on-screen cursor `ΔX` values in these captures are not automatically treated as `T_switch` or `T_gap`. Those metrics must be measured with the cursors placed on the exact events defined in the next section, using an appropriate high-sample-rate / short-timebase acquisition.
 
 ---
 
