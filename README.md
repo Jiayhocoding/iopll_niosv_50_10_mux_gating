@@ -13,7 +13,7 @@ clock gating and switching:
 50 MHz reference -> HVIO IOPLL (M=64, N=1, VCO=3.2 GHz)
                          | C0=64 -> 50 MHz -> root gate 50 --+
                          | C1=320 -> 10 MHz -> root gate 10 --+-> glitch-free MUX -> GPIO_D[0]
-Nios V request -> mux_gating_switch_controller ----------------^ gates/select/markers
+Nios V request -> mux_gating_switch_controller ----------------^ gate enables + MUX select
 ```
 
 The two raw IOPLL outputs are generated continuously. Disabling a gate does
@@ -39,10 +39,10 @@ Nios V writes one requested-frequency bit (`0=50 MHz`, `1=10 MHz`). It never
 bit-bangs gate or select timing. The 50 MHz RTL controller performs:
 
 ```text
-RUN_50 -> ENABLE_10 -> WAIT_PREPARE_10 -> MARK + MUX_TO_10
+RUN_50 -> ENABLE_10 -> WAIT_PREPARE_10 -> MUX_TO_10
        -> WAIT_SWITCH_10 -> disable gate50 -> RUN_10
 
-RUN_10 -> ENABLE_50 -> WAIT_PREPARE_50 -> MARK + MUX_TO_50
+RUN_10 -> ENABLE_50 -> WAIT_PREPARE_50 -> MUX_TO_50
        -> WAIT_SWITCH_50 -> disable gate10 -> RUN_50
 ```
 
@@ -58,11 +58,13 @@ gate-enable-to-MUX-command preparation interval is therefore 80 ns. The target
 gate is enabled throughout this interval while the old source continues to
 drive the output. `prepare_marker` rises with target gate enable.
 
-At the end of exactly `PREPARE_CYCLES`, `transition_marker` and the MUX select
-command change on the same control edge. Thus the transition marker denotes the
-actual switchover command, not preparation. `PREPARE_CYCLES=0` intentionally
-commands gate enable and MUX selection on the same control edge for the sweep
-baseline; the old path still remains enabled during and after this command.
+At the end of exactly `PREPARE_CYCLES`, the internal `transition_marker` and
+the actual MUX select command change on the same control edge. The external
+switch reference is now `GPIO_D[2]`, which exposes the MUX select level itself;
+the internal transition marker is no longer routed to GPIO. `PREPARE_CYCLES=0`
+intentionally commands gate enable and MUX selection on the same control edge
+for the sweep baseline; the old path still remains enabled during and after
+this command.
 
 The Clock Control MUX has no completion output. `WAIT_SWITCH_*` therefore keeps
 both paths enabled for 50 system cycles = 1 us = ten periods of the slowest
@@ -74,22 +76,56 @@ Initial state is gate 50 enabled, gate 10 disabled, and MUX selecting 50 MHz.
 The IOPLL register interface is tied idle; M/N/C0/C1 are fixed and normal
 transitions perform no PLL reset, reconfiguration, recalibration, or relock.
 
+### Actual clock startup and switching flow
+
+The IOPLL starts C0 and C1 as part of normal PLL startup. After lock, both
+`raw_clk_50` and `raw_clk_10` continue running regardless of either gate-enable
+value. A gate enable therefore does **not** start an IOPLL clock or C counter;
+it only allows an already-running raw clock to reach the downstream MUX input.
+
+With the current defaults, reset/idle and both transitions are:
+
+```text
+Reset/RUN_50:
+  raw 50 and raw 10 running -> gate50 ON, gate10 OFF -> MUX select=0 -> 50 MHz output
+
+50 -> 10 MHz:
+  Nios request=1 -> gate10 ON -> wait 4 x 20 ns -> GPIO_D[2] rises / MUX select=1
+  -> keep both gates ON for 50 x 20 ns -> gate50 OFF -> RUN_10
+
+10 -> 50 MHz:
+  Nios request=0 -> gate50 ON -> wait 4 x 20 ns -> GPIO_D[2] falls / MUX select=0
+  -> keep both gates ON for 50 x 20 ns -> gate10 OFF -> RUN_50
+```
+
+The 80 ns preparation occurs while the old clock still drives `GPIO_D[0]`.
+The 1 us switch guard begins with the MUX-select command and keeps both paths
+available while the glitch-free Clock Control IP switches. Disabling the old
+gate afterward does not stop its raw IOPLL output. The software only changes
+the requested frequency every 1 second; all precise timing above is RTL timed.
+
 ## GPIO and oscilloscope procedure
 
 The existing QSF pin assignments were preserved rather than remapped blindly.
 
-| GPIO | Signal | Meaning |
-|---|---|---|
-| `GPIO_D[0]` | final output | Post-gate glitch-free MUX output |
-| `GPIO_D[1]` | `target_iopll_locked` | Raw IOPLL lock indication |
-| `GPIO_D[2]` | `mux_select_10mhz` | Actual MUX selection level: 0=50 MHz, 1=10 MHz |
-| `GPIO_D[3]` | gated 50 MHz | Post-gating C0 path |
-| `GPIO_D[4]` | gated 10 MHz | Post-gating C1 path |
-| `GPIO_D[5]` | preparation marker | Rises when the target gate is enabled |
+| GPIO | Pin | Signal | Meaning |
+|---|---|---|---|
+| `GPIO_D[0]` | `PIN_BK31` | final output | Post-gate glitch-free MUX output |
+| `GPIO_D[1]` | `PIN_BE43` | `target_iopll_locked` | Raw IOPLL lock indication |
+| `GPIO_D[2]` | `PIN_BF29` | `mux_select_10mhz` | Actual MUX selection: 0=50 MHz, 1=10 MHz |
+| `GPIO_D[3]` | `PIN_BF40` | gated 50 MHz | Post-gating C0 path |
+| `GPIO_D[4]` | `PIN_BK28` | gated 10 MHz | Post-gating C1 path |
+| `GPIO_D[5]` | `PIN_BM31` | preparation marker | High from target-gate enable until transition completes |
 
-Trigger on either edge of `GPIO_D[2]`. Capture all six channels across
-both directions. Confirm the target gated clock starts before the marker, the
-old gated clock stops only after output switchover, and lock remains asserted.
+For the requested two-channel measurement, probe `GPIO_D[2]` (MUX select) and
+`GPIO_D[0]` (output). When D2 is low, D0 is 50 MHz; the D2 rising edge commands
+50-to-10 MHz, and D2 high corresponds to 10 MHz. The D2 falling edge commands
+10-to-50 MHz, and D2 low corresponds to 50 MHz. Trigger on either D2 edge and
+measure the first valid new-frequency edge on D0 from that same D2 edge.
+
+For a full six-channel validation, also confirm the target gated clock is
+present before the `GPIO_D[2]` edge, the old gated clock stops only after output
+switchover, and lock remains asserted.
 Raw IOPLL clocks are available internally as `target_iopll_outclk0/1`; only the
 post-gating versions are exported because those are the useful experiment data.
 
@@ -98,7 +134,8 @@ post-gating versions are exported because those are the useful experiment data.
 - `T_prepare`: MUX command/`GPIO_D[2]` edge minus preparation-marker rise.
   For nonzero settings it is `PREPARE_CYCLES * 20 ns` by RTL construction.
 - `T_enable`: first valid target gated-clock edge minus preparation-marker rise.
-- `T_switch`: first valid edge at the new selected frequency minus marker rise.
+- `T_switch`: first valid edge at the new selected frequency minus the
+  corresponding `GPIO_D[2]` MUX-select edge.
 - `T_gap`: first valid new-frequency edge minus last valid old-frequency edge.
 - `T_HIGH_min`, `T_LOW_min`: minimum output pulse widths around the boundary.
 - `T_total`: request-to-completed-state controller latency; do not confuse it
@@ -150,8 +187,9 @@ The simulation script automatically sweeps `PREPARE_CYCLES` through
 `0, 1, 2, 4, 8, 16, 32`. All seven settings pass. The testbench separately
 counts raw C0/C1-model edges while their downstream gates are disabled, proving
 that gate state does not control raw clock generation in the model. It also
-checks that marker and MUX command coincide, both gates are enabled at the MUX
-command, and old-path disable occurs only after the full switch guard.
+checks that the internal transition marker and MUX command coincide, both gates
+are enabled at the MUX command, and old-path disable occurs only after the full
+switch guard. Hardware measurements use `GPIO_D[2]`, not the internal marker.
 
 Quartus 26.1 compile/timing results and relevant clock warnings are recorded
 below after each verified build:

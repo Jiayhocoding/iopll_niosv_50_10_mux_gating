@@ -54,8 +54,9 @@ the hardware rows above for each preparation setting.
 
 ## PREPARE_CYCLES sweep worksheet
 
-At 50 MHz, one preparation cycle is 20 ns. `transition_marker` and the MUX
-select command change on the same controller edge.
+At 50 MHz, one preparation cycle is 20 ns. The internal `transition_marker`
+and MUX select command change on the same controller edge. Hardware uses the
+actual MUX select exported on `GPIO_D[2]` as the transition-time reference.
 
 | `PREPARE_CYCLES` | Programmed `T_prepare` | 50→10 `T_switch` | 50→10 `T_gap` | 10→50 `T_switch` | 10→50 `T_gap` | Min H/L | Clean? |
 |---:|---:|---:|---:|---:|---:|---:|---|
