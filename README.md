@@ -213,21 +213,26 @@ The old 50 MHz clock continues driving the output during preparation. The MUX co
 
 ---
 
-## 5. What to trigger on
+## 5. Hardware measurement: MUX + gating experiment
 
-For output switching behavior, use the signal that actually commands the MUX:
+This is a **gating experiment**, so the measurement model separates two questions:
+
+1. **When does the output MUX switch?** — observe `GPIO_D[2]` against `GPIO_D[0]`.
+2. **When are the gated clock paths enabled/disabled?** — observe `GPIO_D[3]`, `GPIO_D[4]`, and `GPIO_D[5]`.
+
+### Primary two-channel trigger view
+
+For the externally visible output transition, use the signal that actually commands the MUX:
 
 > **Trigger reference = `GPIO_D[2]` (`mux_select_10mhz`)**
 
-Do not use `prepare_marker` as the primary output-switch trigger. The marker answers a different question: **when did preparation begin?**
-
-### Minimum two-channel measurement
+Do not use `prepare_marker` as the primary output-switch trigger. The marker answers a different question: **when did target-path preparation begin?**
 
 ```mermaid
 flowchart LR
     TRIG["CH1: GPIO_D[2]<br/>MUX select"] -->|"rising edge"| FWD["50 → 10 command"]
     TRIG -->|"falling edge"| REV["10 → 50 command"]
-    FWD --> OBS["CH2: GPIO_D[0]<br/>find first valid edge<br/>at new frequency"]
+    FWD --> OBS["CH2: GPIO_D[0]<br/>observe final clock output"]
     REV --> OBS
 ```
 
@@ -236,35 +241,44 @@ flowchart LR
 - Rising edge on D2 → 50 MHz → 10 MHz command.
 - Falling edge on D2 → 10 MHz → 50 MHz command.
 
-### Full validation view
+### Gating validation signals
 
-| GPIO | Pin | Signal | Why observe it |
+| GPIO | Pin | Signal | What it proves |
 |---|---|---|---|
-| `GPIO_D[0]` | `PIN_BK31` | final output | Actual switched clock |
-| `GPIO_D[1]` | `PIN_BE43` | `target_iopll_locked` | Confirm PLL remains locked |
+| `GPIO_D[0]` | `PIN_BK31` | final output | Actual selected output clock |
+| `GPIO_D[1]` | `PIN_BE43` | `target_iopll_locked` | PLL remains locked |
 | `GPIO_D[2]` | `PIN_BF29` | `mux_select_10mhz` | Actual MUX command / trigger |
-| `GPIO_D[3]` | `PIN_BF40` | gated 50 MHz | Confirm 50 MHz path availability |
-| `GPIO_D[4]` | `PIN_BK28` | gated 10 MHz | Confirm 10 MHz path availability |
-| `GPIO_D[5]` | `PIN_BM31` | preparation marker | Measure preparation interval |
+| `GPIO_D[3]` | `PIN_BF40` | gated 50 MHz | 50 MHz downstream path availability |
+| `GPIO_D[4]` | `PIN_BK28` | gated 10 MHz | 10 MHz downstream path availability |
+| `GPIO_D[5]` | `PIN_BM31` | preparation marker | Target-gate preparation interval |
 
-For a six-channel capture, verify that the target gated clock appears before the D2 MUX-select edge, the old gated path remains active through the switchover, and PLL lock stays asserted.
+For a complete **gating** validation, confirm all of the following:
 
-### Hardware capture: 50 MHz → 10 MHz
+- the target gated clock is already present **before** the `GPIO_D[2]` MUX-select edge,
+- both gated paths remain available during the MUX transition,
+- the old gated clock is removed only **after** the switch guard,
+- IOPLL lock remains asserted throughout.
 
-The following oscilloscope capture shows the forward transition at three time scales: an overall view, a zoomed view, and a close-up of the switching boundary.
+### Hardware capture from the gating build: 50 MHz → 10 MHz
 
-![Hardware oscilloscope capture of the 50 MHz to 10 MHz clock transition](docs/images/hardware_50_to_10_transition.jpg)
+The following oscilloscope image was captured from this **MUX + root-gating implementation**. It shows the forward 50 MHz → 10 MHz transition at three time scales.
 
-**Channel interpretation**
+![Hardware oscilloscope capture from the MUX + gating implementation](docs/images/hardware_50_to_10_transition.jpg)
 
-- **CH1 / yellow:** `GPIO_D[0]` — final post-MUX clock output.
-- **CH2 / blue:** `GPIO_D[2]` — `mux_select_10mhz`, used as the external switch-command reference.
-- The CH2 rising edge corresponds to the **50 MHz → 10 MHz MUX command**.
-- The yellow waveform changes from the faster 50 MHz region to the slower 10 MHz region after the command boundary.
+**Signals shown in this capture**
 
-These captures are primarily **qualitative hardware evidence** of the requested transition. At the displayed millisecond-scale timebases, the nominal 50 MHz and 10 MHz square waves are heavily undersampled by the oscilloscope display, so the yellow trace should not be interpreted as the actual clock waveform shape or used directly for nanosecond-level pulse-width claims.
+- **CH1 / yellow:** `GPIO_D[0]` — final post-gating, post-MUX clock output.
+- **CH2 / blue:** `GPIO_D[2]` — `mux_select_10mhz`, the external MUX-command reference.
+- The CH2 rising edge corresponds to the 50 MHz → 10 MHz MUX command.
+- The output transitions from the 50 MHz operating region to the 10 MHz operating region around that command boundary.
 
-> **Important:** the on-screen cursor `ΔX` values in these captures are not automatically treated as `T_switch` or `T_gap`. Those metrics must be measured with the cursors placed on the exact events defined in the next section, using an appropriate high-sample-rate / short-timebase acquisition.
+This capture is hardware evidence of the **output transition produced by the gating architecture**, but it does **not by itself directly show the gate-enable/disable events**, because `GPIO_D[3]`, `GPIO_D[4]`, and `GPIO_D[5]` are not displayed in this two-channel acquisition.
+
+Therefore, do not interpret this image alone as proof that the target gate turned on 80 ns before the MUX command or that the old gate turned off exactly after the 1 µs guard. Those gating-sequence claims are verified digitally by the RTL/testbench and require the additional gating GPIO channels for direct board-level confirmation.
+
+At the displayed millisecond-scale timebases, the nominal 50 MHz and 10 MHz clock waveforms are also heavily undersampled by the oscilloscope display. The yellow trace should therefore not be interpreted as the actual square-wave shape or used directly for nanosecond-level pulse-width claims.
+
+> **Important:** the on-screen cursor `ΔX` values in these captures are not automatically `T_switch`, `T_gap`, `T_prepare`, or `T_enable`. Each metric requires the cursors to be placed on the exact events defined below using a suitable high-sample-rate / short-timebase acquisition.
 
 ---
 
@@ -272,15 +286,15 @@ These captures are primarily **qualitative hardware evidence** of the requested 
 
 ```mermaid
 flowchart LR
-    P["prepare_marker rises"] -->|"T_prepare"| S["GPIO_D[2] MUX command"]
-    S -->|"T_switch"| N["first valid new-frequency edge"]
-    O["last valid old-frequency edge"] -->|"T_gap"| N
+    P["prepare_marker rises<br/>target gate requested ON"] -->|"T_prepare"| S["GPIO_D[2]<br/>MUX command"]
+    S -->|"T_switch"| N["first valid new-frequency output edge"]
+    O["last valid old-frequency output edge"] -->|"T_gap"| N
 ```
 
 | Metric | Definition | What it tells us |
 |---|---|---|
 | `T_prepare` | D2 MUX-command edge − prepare-marker rise | Intentional target-path preparation |
-| `T_enable` | First valid target gated-clock edge − prepare-marker rise | Gate/path wake-up behavior |
+| `T_enable` | First valid target gated-clock edge − prepare-marker rise | Actual gated-path enable behavior |
 | `T_switch` | First valid new-frequency output edge − D2 edge | Actual MUX/output response |
 | `T_gap` | First valid new-frequency edge − last valid old-frequency edge | Visible boundary interruption |
 | `T_HIGH_min` | Minimum HIGH pulse width near boundary | Runt/truncated HIGH check |
@@ -471,7 +485,7 @@ This repository demonstrates the **digital control architecture** and verifies t
 
 ### What still requires hardware evidence
 
-**Measure physically:** `T_switch`, `T_gap`, minimum boundary pulse widths, actual glitch behavior, and power impact.
+**Measure physically:** `T_switch`, `T_gap`, `T_enable`, target/old gated-path timing, minimum boundary pulse widths, actual glitch behavior, and power impact.
 
 ---
 
