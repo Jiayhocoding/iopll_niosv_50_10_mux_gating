@@ -265,19 +265,19 @@ The three oscilloscope captures below show the same forward transition at progre
 
 #### 1. Overview — 50 ms/div
 
-![50 MHz to 10 MHz gating experiment overview](IMG_0158.JPG)
+![50 MHz to 10 MHz gating experiment overview](doc/img/IMG_0158.JPG)
 
 This long-window capture shows the overall operating-region change from the faster 50 MHz output region to the slower 10 MHz output region.
 
 #### 2. Transition zoom — 2 ms/div
 
-![50 MHz to 10 MHz gating experiment transition zoom](IMG_0160.JPG)
+![50 MHz to 10 MHz gating experiment transition zoom](doc/img/IMG_0160.JPG)
 
 This view zooms in around the `GPIO_D[2]` MUX-select transition so the output behavior around the command boundary is easier to see.
 
 #### 3. Boundary close-up — 500 µs/div
 
-![50 MHz to 10 MHz gating experiment boundary close-up](IMG_0163.JPG)
+![50 MHz to 10 MHz gating experiment boundary close-up](doc/img/IMG_0163.JPG)
 
 This is the closest view in the current capture set and is intended to inspect the immediate command/output boundary before moving to a true ns-scale pulse-quality acquisition.
 
