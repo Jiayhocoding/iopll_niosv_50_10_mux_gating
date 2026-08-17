@@ -259,24 +259,39 @@ For a complete **gating** validation, confirm all of the following:
 - the old gated clock is removed only **after** the switch guard,
 - IOPLL lock remains asserted throughout.
 
-### Hardware capture from the gating build: 50 MHz → 10 MHz
+### Hardware captures from the gating build: 50 MHz → 10 MHz
 
-The following oscilloscope image was captured from this **MUX + root-gating implementation**. It shows the forward 50 MHz → 10 MHz transition at three time scales.
+The three oscilloscope captures below show the same forward transition at progressively shorter time scales. Keeping them as separate files preserves the original detail and makes each acquisition easier to interpret on GitHub and on mobile.
 
-![Hardware oscilloscope capture from the MUX + gating implementation](docs/images/hardware_50_to_10_transition.jpg)
+#### 1. Overview — 50 ms/div
 
-**Signals shown in this capture**
+![50 MHz to 10 MHz gating experiment overview](docs/images/hardware_50_to_10_overview.jpg)
+
+This long-window capture shows the overall operating-region change from the faster 50 MHz output region to the slower 10 MHz output region.
+
+#### 2. Transition zoom — 2 ms/div
+
+![50 MHz to 10 MHz gating experiment transition zoom](docs/images/hardware_50_to_10_zoom.jpg)
+
+This view zooms in around the `GPIO_D[2]` MUX-select transition so the output behavior around the command boundary is easier to see.
+
+#### 3. Boundary close-up — 500 µs/div
+
+![50 MHz to 10 MHz gating experiment boundary close-up](docs/images/hardware_50_to_10_boundary.jpg)
+
+This is the closest view in the current capture set and is intended to inspect the immediate command/output boundary before moving to a true ns-scale pulse-quality acquisition.
+
+**Signals shown in all three captures**
 
 - **CH1 / yellow:** `GPIO_D[0]` — final post-gating, post-MUX clock output.
 - **CH2 / blue:** `GPIO_D[2]` — `mux_select_10mhz`, the external MUX-command reference.
 - The CH2 rising edge corresponds to the 50 MHz → 10 MHz MUX command.
-- The output transitions from the 50 MHz operating region to the 10 MHz operating region around that command boundary.
 
-This capture is hardware evidence of the **output transition produced by the gating architecture**, but it does **not by itself directly show the gate-enable/disable events**, because `GPIO_D[3]`, `GPIO_D[4]`, and `GPIO_D[5]` are not displayed in this two-channel acquisition.
+These captures are hardware evidence of the **output transition produced by the gating architecture**, but they do **not by themselves directly show the gate-enable/disable events**, because `GPIO_D[3]`, `GPIO_D[4]`, and `GPIO_D[5]` are not displayed in this two-channel acquisition.
 
-Therefore, do not interpret this image alone as proof that the target gate turned on 80 ns before the MUX command or that the old gate turned off exactly after the 1 µs guard. Those gating-sequence claims are verified digitally by the RTL/testbench and require the additional gating GPIO channels for direct board-level confirmation.
+Therefore, do not interpret these images alone as proof that the target gate turned on 80 ns before the MUX command or that the old gate turned off exactly after the 1 µs guard. Those gating-sequence claims are verified digitally by the RTL/testbench and require the additional gating GPIO channels for direct board-level confirmation.
 
-At the displayed millisecond-scale timebases, the nominal 50 MHz and 10 MHz clock waveforms are also heavily undersampled by the oscilloscope display. The yellow trace should therefore not be interpreted as the actual square-wave shape or used directly for nanosecond-level pulse-width claims.
+At the displayed millisecond-scale timebases, the nominal 50 MHz and 10 MHz clock waveforms are heavily undersampled by the oscilloscope display. The yellow traces should therefore not be interpreted as the actual square-wave shape or used directly for nanosecond-level pulse-width claims.
 
 > **Important:** the on-screen cursor `ΔX` values in these captures are not automatically `T_switch`, `T_gap`, `T_prepare`, or `T_enable`. Each metric requires the cursors to be placed on the exact events defined below using a suitable high-sample-rate / short-timebase acquisition.
 
