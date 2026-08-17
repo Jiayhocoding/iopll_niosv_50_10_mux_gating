@@ -249,6 +249,21 @@ flowchart LR
 
 For a six-channel capture, verify that the target gated clock appears before the D2 MUX-select edge, the old gated path remains active through the switchover, and PLL lock stays asserted.
 
+### Hardware capture: 50 MHz → 10 MHz
+
+The following oscilloscope capture shows the forward transition at three time scales: an overall view, a zoomed view, and a close-up of the switching boundary.
+
+![Hardware oscilloscope capture of the 50 MHz to 10 MHz clock transition](docs/images/hardware_50_to_10_transition.jpg)
+
+**Channel interpretation**
+
+- **CH1 / yellow:** `GPIO_D[0]` — final post-MUX clock output.
+- **CH2 / blue:** `GPIO_D[2]` — `mux_select_10mhz`, used as the external switch-command reference.
+- The CH2 rising edge corresponds to the **50 MHz → 10 MHz MUX command**.
+- The yellow waveform changes from the faster 50 MHz region to the slower 10 MHz region after the command boundary.
+
+> **Important:** the on-screen cursor `ΔX` values in these captures are not automatically treated as `T_switch` or `T_gap`. Those metrics must be measured with the cursors placed on the exact events defined in the next section.
+
 ---
 
 ## 6. Measurement definitions
@@ -412,6 +427,7 @@ The software changes the requested frequency every 1 second; all nanosecond-scal
 ├── mux_gating_top.qsf                # Quartus assignments / GPIO pins
 ├── mux_gating_top.sdc                # timing constraints
 ├── mux_gating_control_system.qsys    # Platform Designer / Nios V system
+├── docs/images/                      # hardware oscilloscope captures used by README
 ├── rtl/
 │   ├── mux_gating_switch_controller.sv  # precise gate + MUX FSM
 │   ├── nios_iopll_bridge.sv
